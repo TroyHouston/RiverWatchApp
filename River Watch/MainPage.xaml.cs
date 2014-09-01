@@ -22,6 +22,20 @@ namespace River_Watch
             //BuildLocalizedApplicationBar();
         }
 
+
+        
+        private void Camera_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Folder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
         //{
