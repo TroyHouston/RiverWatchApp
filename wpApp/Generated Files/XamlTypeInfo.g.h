@@ -225,11 +225,6 @@ namespace XamlTypeInfo
                 bool get();
             }
 
-            property bool IsLocalType
-            {
-                bool get();
-            }
-
         internal:
             typedef ::Platform::Object^ (*ActivatorFn)();
             typedef void (*AddToCollectionFn)(::Platform::Object^ instance, ::Platform::Object^ item);
@@ -248,7 +243,6 @@ namespace XamlTypeInfo
             void SetIsEnum();
             void SetIsBindable();
             void SetIsReturnTypeStub();
-            void SetIsLocalType();
             void SetItemTypeName(::Platform::String^ itemTypeName);
             void SetKeyTypeName(::Platform::String^ keyTypeName);
             void AddMemberName(::Platform::String^ shortName);
@@ -265,7 +259,6 @@ namespace XamlTypeInfo
             bool _isEnum;
             bool _isBindable;
             bool _isReturnTypeStub;
-            bool _isLocalType;
 
             ::Platform::String^ _contentPropertyName;
             ::Platform::String^ _itemTypeName;
