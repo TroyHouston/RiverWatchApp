@@ -53,8 +53,7 @@
             <Button Name="folderButton" Margin="250,443,86,44" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="Folder_Click" HorizontalAlignment="Center" Width="120">
                 <Image Source="/Assets/Tiles/appbar.folder.open.png" HorizontalAlignment="Left" VerticalAlignment="Center" />
             </Button>
-            <Image HorizontalAlignment="Left" Height="376" VerticalAlignment="Top" Width="430" Source="/Assets/Tiles/riverwatchicon.png" Margin="16,10,0,0"/>
-
+            <Image HorizontalAlignment="Left" Height="438" VerticalAlignment="Top" Width="430" Source="/Assets/Tiles/riverwatchicon.png" Margin="10,10,0,0" RenderTransformOrigin="0.493,0.662"/>
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
