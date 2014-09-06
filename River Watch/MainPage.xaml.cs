@@ -27,6 +27,21 @@ namespace River_Watch
         // Asks user if app may get location data.
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            //Checks the current theme being used
+            base.OnNavigatedTo(e);
+            var theme = (Visibility)Resources["PhoneLightThemeVisibility"];
+            if (theme == System.Windows.Visibility.Visible)
+            {
+                // Change the UI for Light theme
+                System.Diagnostics.Debug.WriteLine("Light");
+            }
+            else
+            {
+                // Change the UI for Dark theme
+                System.Diagnostics.Debug.WriteLine("Dark");
+            }
+
+
             if (IsolatedStorageSettings.ApplicationSettings.Contains("LocationConsent"))
             {
                 // User has opted in or out of Location
@@ -94,7 +109,8 @@ namespace River_Watch
             }
         }
 
-
+        
+        
 
         // Sample code for building a localized ApplicationBar
         //private void BuildLocalizedApplicationBar()
