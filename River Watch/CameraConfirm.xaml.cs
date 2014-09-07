@@ -26,7 +26,13 @@ namespace River_Watch
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            cameraCaptureTask.Show();
+
+            string msg = "";
+            if (NavigationContext.QueryString.TryGetValue("msg", out msg)) {
+                if (msg.Equals("MAIN_PAGE")) {
+                    cameraCaptureTask.Show();
+                }
+             }
         }
 
 
