@@ -13,13 +13,13 @@ namespace River_Watch
         public SubmitEvent()
         {
 
-
         }
 
         // I would heavily suggest a JSON library at some point
         public String createJSONSubmit()
         {
             StringBuilder s = new StringBuilder("{");
+            List<String> tags = new List<String>() { "cow", "sheep"};
             s.Append("\"geolocation\":");
             s.Append("{");
             s.Append("\"lat\":"); s.Append("3");
@@ -35,9 +35,17 @@ namespace River_Watch
 
             // From the Android code, it seems to be doubly-arrayed
             s.Append("\"tags\":[[");
-            s.Append("\"tag1\"");
-                s.Append(",");
-                s.Append("\"tag2\"");
+
+            for (int i = 0; i < tags.Count; i++)
+            {
+                s.Append("\"");
+                s.Append(tags[i]);
+                s.Append("\"");
+                if (i != tags.Count - 1)
+                {
+                    s.Append(",");
+                }
+            }
             s.Append("]]");
 
             s.Append(",");
