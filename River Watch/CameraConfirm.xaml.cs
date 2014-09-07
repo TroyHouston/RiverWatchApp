@@ -60,6 +60,9 @@ namespace River_Watch
         {
             // Attempt to send the image to the server
             System.Diagnostics.Debug.WriteLine("SENDING IMAGE TO SERVER...");
+
+            SubmitEvent submit = new SubmitEvent();
+            System.Diagnostics.Debug.WriteLine(submit.createJSONSubmit());
         }
 
         private void noButton_Click(object sender, RoutedEventArgs e)
