@@ -31,9 +31,9 @@ namespace River_Watch
 
             if (NavigationContext.QueryString.TryGetValue("msg", out msg)) {
                 if (msg.Equals("MAIN_PAGE")) {
+                    // Query strings appear permanent until removed
+                    // We only want this to run when we came directly from the main page
                     NavigationContext.QueryString.Remove("msg");
-                    System.Diagnostics.Debug.WriteLine(msg);
-                    System.Diagnostics.Debug.WriteLine("HERE");
                     cameraCaptureTask.Show();
                 }
              }
