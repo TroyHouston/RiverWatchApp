@@ -28,8 +28,12 @@ namespace River_Watch
             base.OnNavigatedTo(e);
 
             string msg = "";
+
             if (NavigationContext.QueryString.TryGetValue("msg", out msg)) {
                 if (msg.Equals("MAIN_PAGE")) {
+                    NavigationContext.QueryString.Remove("msg");
+                    System.Diagnostics.Debug.WriteLine(msg);
+                    System.Diagnostics.Debug.WriteLine("HERE");
                     cameraCaptureTask.Show();
                 }
              }
