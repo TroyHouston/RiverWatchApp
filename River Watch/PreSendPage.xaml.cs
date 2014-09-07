@@ -8,53 +8,95 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using River_Watch.Resources;
+using System.Device.Location;
+using System.IO;
+using System.Windows.Media.Imaging;
+using Microsoft.Phone.Maps.Controls;
+using System.Windows.Shapes;
+using System.Windows.Media;
+
+
 
 namespace River_Watch
 {
-    public partial class MainPage : PhoneApplicationPage
+
+    public partial class PreSendPage : PhoneApplicationPage
     {
+        MapLayer polLayer = null;
+        MapOverlay polMarker = null;
+        private const int mapZoomLevel = 15; //1-20, 15 is good.
+
         // Constructor
-        public MainPage()
+        public PreSendPage()
         {
             InitializeComponent();
-
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
+            setMapLoc(new GeoCoordinate(-41.193599,174.932816));
+            setPollutionImage(@"/Assets/placeholderPhoto.png");
+            adaptToTheme((Visibility)Resources["PhoneLightThemeVisibility"] == System.Windows.Visibility.Visible);
         }
 
-
-        
-        private void Camera_Click(object sender, RoutedEventArgs e)
+        private void adaptToTheme(bool isLight)
         {
-
+            ImageBrush themeBackBrush = new ImageBrush();
+            ImageBrush themeConfirmBrush = new ImageBrush();
+            if(isLight)
+            {
+                themeBackBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.navigate.previous.png", UriKind.Relative));
+                confirmButton.Background = themeConfirmBrush;
+                themeConfirmBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.navigate.next.png", UriKind.Relative));
+                backButton.Background = themeBackBrush;
+            }
+            else
+            {
+                themeBackBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.navigate.previous.png", UriKind.Relative));
+                confirmButton.Background = themeConfirmBrush;
+                themeConfirmBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.navigate.next.png", UriKind.Relative));
+                backButton.Background = themeBackBrush;
+            }
         }
 
-        private void Folder_Click(object sender, RoutedEventArgs e)
+        private void setMapLoc(GeoCoordinate latLong){
+            miniMap.Center = latLong;
+            miniMap.ZoomLevel = mapZoomLevel;
+
+            polLayer = new MapLayer();
+            polMarker = new MapOverlay();
+            Canvas can = new Canvas();
+
+            Ellipse mark = new Ellipse();
+            mark.Fill = new SolidColorBrush(Colors.Red);
+            mark.Opacity = 0.8;
+            mark.Height = 10;
+            mark.Width = 10;
+            can.Children.Add(mark);
+
+            polMarker.Content = can;
+            polMarker.PositionOrigin = new Point(0.5, 0.5);
+            polMarker.GeoCoordinate = latLong;
+            polLayer.Add(polMarker);
+            miniMap.Layers.Add(polLayer);
+        }
+
+        private void setPollutionImage(String imagePath)
         {
-
+            pollutionPic.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+        }
+
+        private void Confirm_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/UploadPage.xaml", UriKind.Relative));
+        }
+
+        private void tagButton_Click(object sender, RoutedEventArgs e)
+        {
+            
 
         }
 
-
-
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
-
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
     }
 }

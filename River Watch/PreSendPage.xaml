@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
-    x:Class="River_Watch.MainPage"
+    x:Class="River_Watch.PreSendPage"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -55,18 +55,21 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Image HorizontalAlignment="Left" Height="180" Margin="10,10,0,0" VerticalAlignment="Top" Width="225" Source="/Assets/placeholderPhoto.png"/>
-            <maps:Map HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top" Height="180" Width="225" FontFamily="Portable User Interface"/>
-            <Button Name="cameraButton" Margin="60,445,276,42" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="Camera_Click" HorizontalAlignment="Center" Width="120">
-                <Image Source="/Assets/Tiles/appbar.navigate.previous.png" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="1,1"  />
+            <Image x:Name="pollutionPic" HorizontalAlignment="Left" Height="180" Margin="10,10,0,0" VerticalAlignment="Top" Width="436" Source="/Assets/placeholderPhoto.png"/>
+            <maps:Map x:Name="miniMap" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Height="180" Width="436" FontFamily="Portable User Interface"/>
+            <Button x:Name="backButton" Margin="60,445,276,10" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="Back_Click" HorizontalAlignment="Center" Width="120">
+                <Button.Background>
+                    <ImageBrush  ImageSource="/Assets/Tiles/appbar.navigate.previous.png" />
+                </Button.Background>
             </Button>
-            <Button Name="folderButton" Margin="271,445,65,42" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="Folder_Click" HorizontalAlignment="Center" Width="120" FontFamily="Portable User Interface">
-                <Image Source="/Assets/Tiles/appbar.navigate.next.png" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <Button x:Name="confirmButton" Margin="271,445,65,10" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="Confirm_Click" HorizontalAlignment="Center" Width="120" FontFamily="Portable User Interface">
+                <Button.Background>
+                    <ImageBrush  ImageSource="/Assets/Tiles/appbar.navigate.next.png" />
+                </Button.Background>
             </Button>
-            <TextBlock HorizontalAlignment="Left" Margin="235,10,0,0" TextWrapping="Wrap" Text="Taken at 1:10pm 12/3/14" VerticalAlignment="Top" Width="211" FontFamily="Portable User Interface"/>
-            <TextBlock HorizontalAlignment="Left" Margin="250,299,0,0" TextWrapping="Wrap" Text="Lat: ?" VerticalAlignment="Top" Width="196" FontFamily="Portable User Interface"/>
-            <TextBlock HorizontalAlignment="Left" Margin="250,331,0,0" TextWrapping="Wrap" Text="Lon: ?" VerticalAlignment="Top" Width="196" FontFamily="Portable User Interface"/>
-            <Button Content="Manual Select" HorizontalAlignment="Left" Margin="235,222,0,0" VerticalAlignment="Top" Width="211" FontFamily="Portable User Interface"/>
+            <Button x:Name="tagButton" Content="Set Tags" HorizontalAlignment="Left" Margin="10,380,0,0" VerticalAlignment="Top" Click="tagButton_Click"/>
+            <TextBlock HorizontalAlignment="Left" Margin="145,403,0,0" TextWrapping="Wrap" Text="Tags: " VerticalAlignment="Top" RenderTransformOrigin="0.268,-0.185"/>
+
         </Grid>
 
     </Grid>
