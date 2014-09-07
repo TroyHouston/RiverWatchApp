@@ -51,6 +51,15 @@ namespace River_Watch
             // Reset the stream position to the beginning
             fileStream.Position = 0;
 
+            /* Post request consists of three parts 
+             * 
+             * 1.  "Incident as JSON: " (followed by submission JSON?)
+             * 2.  "image" (followed by file data assumedly as binary) 
+             * 3.  "data" (followed by submission JSON?) 
+             * 
+             * Still need to figure out what the difference is. 
+             */
+
             /* Some example code
              * I think we need to use http client or httpwebrequest
              * 
