@@ -13,5 +13,7 @@ namespace River_Watch
 
         public static string SUBMIT_PATH { get { return SERVER_URL + "/api/image" ; } }
         public static string SECURE_SUBMIT_PATH { get { return SERVER_URL + "/api/image"; } }
+
+        public static string MAIN_PAGE { get { return "MAIN_PAGE"; } }
     }
 }

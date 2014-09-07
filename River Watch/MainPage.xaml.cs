@@ -78,7 +78,7 @@ namespace River_Watch
         
         private void Camera_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/CameraConfirm.xaml?msg=" + "MAIN_PAGE", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/CameraConfirm.xaml?msg=" + Constants.MAIN_PAGE, UriKind.Relative));
         }
 
         private void Folder_Click(object sender, RoutedEventArgs e)

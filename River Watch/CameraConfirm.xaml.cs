@@ -29,7 +29,7 @@ namespace River_Watch
 
             if (NavigationContext.QueryString.TryGetValue("msg", out msg))
             {
-                if (msg.Equals("MAIN_PAGE"))
+                if (msg.Equals(Constants.MAIN_PAGE))
                 {
                     // Query strings appear permanent until removed
                     // We only want this to run when we came directly from the main page
