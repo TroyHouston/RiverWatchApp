@@ -10,6 +10,10 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using River_Watch.Resources;
 using Windows.Devices.Geolocation;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+
+
 
 namespace River_Watch
 {
@@ -30,15 +34,25 @@ namespace River_Watch
             //Checks the current theme being used
             base.OnNavigatedTo(e);
             var theme = (Visibility)Resources["PhoneLightThemeVisibility"];
+            ImageBrush themeCameraBrush = new ImageBrush();
+            ImageBrush themeFolderBrush = new ImageBrush();
             if (theme == System.Windows.Visibility.Visible)
             {
                 // Change the UI for Light theme
                 System.Diagnostics.Debug.WriteLine("Light");
+                themeFolderBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.folder.open.png", UriKind.Relative));
+                themeCameraBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.camera.png", UriKind.Relative));
+                folderButton.Background = themeFolderBrush;
+                cameraButton.Background = themeCameraBrush;
             }
             else
             {
                 // Change the UI for Dark theme
                 System.Diagnostics.Debug.WriteLine("Dark");
+                themeFolderBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.folder.open.png", UriKind.Relative));
+                themeCameraBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.camera.png", UriKind.Relative));
+                folderButton.Background = themeFolderBrush;
+                cameraButton.Background = themeCameraBrush;
             }
 
 
@@ -65,6 +79,7 @@ namespace River_Watch
         
         private void Camera_Click(object sender, RoutedEventArgs e)
         {
+     
         }
 
         private void Folder_Click(object sender, RoutedEventArgs e)
@@ -108,6 +123,7 @@ namespace River_Watch
                 }
             }
         }
+
 
         
         
