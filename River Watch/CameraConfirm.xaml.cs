@@ -10,9 +10,9 @@ using Microsoft.Phone.Shell;
 
 namespace River_Watch
 {
-    public partial class Page1 : PhoneApplicationPage
+    public partial class CameraConfirm : PhoneApplicationPage
     {
-        public Page1()
+        public CameraConfirm()
         {
             InitializeComponent();
         }
