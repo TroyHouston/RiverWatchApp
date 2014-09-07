@@ -25,18 +25,23 @@ namespace River_Watch
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-
             string msg = "";
 
-            if (NavigationContext.QueryString.TryGetValue("msg", out msg)) {
-                if (msg.Equals("MAIN_PAGE")) {
+            if (NavigationContext.QueryString.TryGetValue("msg", out msg))
+            {
+                if (msg.Equals("MAIN_PAGE"))
+                {
                     // Query strings appear permanent until removed
                     // We only want this to run when we came directly from the main page
                     NavigationContext.QueryString.Remove("msg");
                     cameraCaptureTask.Show();
                 }
-             }
+            }
+            else
+            {
+                // We only want the switching navigation to appear if the camera isn't coming up
+                base.OnNavigatedTo(e);
+            }
         }
 
 
@@ -44,12 +49,22 @@ namespace River_Watch
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                MessageBox.Show(e.ChosenPhoto.Length.ToString());
-
+                //MessageBox.Show(e.ChosenPhoto.Length.ToString());
                 System.Windows.Media.Imaging.BitmapImage bmp = new System.Windows.Media.Imaging.BitmapImage();
                 bmp.SetSource(e.ChosenPhoto);
                 returnedImage.Source = bmp;
             }
+        }
+
+        private void yesButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Attempt to send the image to the server
+            System.Diagnostics.Debug.WriteLine("SENDING IMAGE TO SERVER...");
+        }
+
+        private void noButton_Click(object sender, RoutedEventArgs e)
+        {
+            cameraCaptureTask.Show();
         }
     }
 }
