@@ -12,14 +12,12 @@ using River_Watch.Resources;
 using Windows.Devices.Geolocation;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Microsoft.Phone.Tasks;
 
 
 namespace River_Watch
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        CameraCaptureTask cameraCaptureTask;
         // Constructor
         public MainPage()
         {
@@ -27,9 +25,6 @@ namespace River_Watch
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
-
-            cameraCaptureTask = new CameraCaptureTask();
-            cameraCaptureTask.Completed += new EventHandler<PhotoResult>(cameraCaptureTask_Completed);
         }
 
         // Asks user if app may get location data.
@@ -83,7 +78,7 @@ namespace River_Watch
         
         private void Camera_Click(object sender, RoutedEventArgs e)
         {
-            cameraCaptureTask.Show();
+
         }
 
         private void Folder_Click(object sender, RoutedEventArgs e)
@@ -149,17 +144,5 @@ namespace River_Watch
         //}
 
 
-        void cameraCaptureTask_Completed(object sender, PhotoResult e)
-        {
-            if (e.TaskResult == TaskResult.OK)
-            {
-                MessageBox.Show(e.ChosenPhoto.Length.ToString());
-
-                //Code to display the photo on the page in an image control named myImage.
-                //System.Windows.Media.Imaging.BitmapImage bmp = new System.Windows.Media.Imaging.BitmapImage();
-                //bmp.SetSource(e.ChosenPhoto);
-                //myImage.Source = bmp;
-            }
-        }
     }
 }
