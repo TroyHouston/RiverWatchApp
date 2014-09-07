@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace River_Watch
 {
     public partial class CameraConfirm : PhoneApplicationPage
     {
         CameraCaptureTask cameraCaptureTask;
+        Stream currentPhotoStream;
 
         public CameraConfirm()
         {
@@ -50,8 +53,9 @@ namespace River_Watch
             if (e.TaskResult == TaskResult.OK)
             {
                 //MessageBox.Show(e.ChosenPhoto.Length.ToString());
-                System.Windows.Media.Imaging.BitmapImage bmp = new System.Windows.Media.Imaging.BitmapImage();
-                bmp.SetSource(e.ChosenPhoto);
+                BitmapImage bmp = new BitmapImage();
+                currentPhotoStream = e.ChosenPhoto;
+                bmp.SetSource(currentPhotoStream);
                 returnedImage.Source = bmp;
             }
         }
