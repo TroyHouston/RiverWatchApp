@@ -106,5 +106,16 @@ namespace River_Watch
             }*/
         }
 
+        private string generatePostData(string boundary, string fileName)
+        {
+            StringBuilder headers = new StringBuilder();
+            headers.AppendFormat("--{0}\r\nContent-Disposition name=\"{1}\"\r\n\r\n{2}\r\n",
+                boundary, "data", createJSONSubmit());
+            headers.AppendFormat("--{0}\r\nContent-Disposition name=\"{1}\"; filename=\"{2}\"\r\n" +
+                "Content-Type: {3}\r\n\r\n",
+                boundary, "file", fileName, "application/octet-stream");
+            return headers.ToString();
+        }
+
     }
 }
