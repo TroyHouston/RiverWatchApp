@@ -123,8 +123,23 @@ namespace River_Watch
             }
         }
 
+        //Nav Bar buttons
+        private void navBarSettings(object sender, EventArgs e)
+        {
+           //Go to another page 
+           // NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.RelativeOrAbsolute));
+        }
 
-        
+        private void navBarHelp(object sender, EventArgs e)
+        {
+
+        }
+
+        private void navBarPolicy(object sender, EventArgs e)
+        {
+
+        }
+
         
 
         // Sample code for building a localized ApplicationBar

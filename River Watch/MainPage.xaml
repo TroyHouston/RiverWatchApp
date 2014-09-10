@@ -14,9 +14,9 @@
     shell:SystemTray.IsVisible="True">
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Minimized" IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="privacyPolicy" IconUri="/Assets/navBarIcons/appbar.warning.circle.png" IsEnabled="True" Text="Privacy Policy"/>
-            <shell:ApplicationBarIconButton x:Name="help" IconUri="/Assets/navBarIcons/appbar.question.png" IsEnabled="True" Text="Help"/>
-            <shell:ApplicationBarIconButton x:Name="settings" IconUri="/Assets/navBarIcons/appbar.settings.png" IsEnabled="True" Text="Settings"/>
+            <shell:ApplicationBarIconButton x:Name="policy" IconUri="/Assets/navBarIcons/appbar.warning.circle.png" IsEnabled="True" Text="Policy" Click="navBarPolicy"/>
+            <shell:ApplicationBarIconButton x:Name="help" IconUri="/Assets/navBarIcons/appbar.question.png" IsEnabled="True" Text="Help" Click="navBarHelp"/>
+            <shell:ApplicationBarIconButton x:Name="settings" IconUri="/Assets/navBarIcons/appbar.settings.png" IsEnabled="True" Text="Settings" Click="navBarSettings"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
@@ -56,11 +56,11 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Grid.RowSpan="2">
             <Button Name="cameraButton" Margin="87,345,249,70" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="Camera_Click" HorizontalAlignment="Center" Width="120">
-                <!--<Image Source="/Assets/Tiles/appbar.camera.png" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="1,1"  />        
+               <!--<Image Source="/Assets/Tiles/appbar.camera.png" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="1,1"  />        
                 -->
-                <Button.Background>
+               <Button.Background>
                     <ImageBrush ImageSource="/Assets/Tiles/appbar.camera.png" />
-                </Button.Background>
+                </Button.Background> 
             </Button>
             <Button Name="folderButton" Margin="253,345,83,70" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="Folder_Click" HorizontalAlignment="Center" Width="120">
                 <!-- <Image Source="/Assets/Tiles/appbar.folder.open.png" HorizontalAlignment="Left" VerticalAlignment="Center" />
