@@ -28,22 +28,17 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Image x:Name="previewImage" HorizontalAlignment="Left" Height="186" Margin="82,26,0,0" VerticalAlignment="Top" Width="292" Source="/Assets/Tiles/riverwatchicon.png"/>
-            <Button x:Name="uploadButton" Margin="300,439,36,48" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="upload_Click" HorizontalAlignment="Center" Width="120">
-                <Button.Background>
-                    <ImageBrush  ImageSource="/Assets/Tiles/appbar.close.png" />
-                </Button.Background>
+            <Image x:Name="previewImage" HorizontalAlignment="Center" Height="186" Margin="32,10,0,0" VerticalAlignment="Top" Width="380" Source="/Assets/Tiles/riverwatchicon.png"/>
+            <Button x:Name="uploadButton" Margin="257,439,79,48" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="upload_Click" HorizontalAlignment="Center" Width="120">
+                <Image Source="/Assets/Tiles/appbar.check.png" HorizontalAlignment="Left" VerticalAlignment="Center" />
             </Button>
-            <Button x:Name="cancelButton" Margin="60,439,276,48" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="cancelButton_Click" HorizontalAlignment="Center" Width="120" RenderTransformOrigin="0.56,0.501">
-                <!-- <Image Source="/Assets/Tiles/appbar.folder.open.png" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                 -->
-                <Button.Background>
-                    <ImageBrush  ImageSource="/Assets/Tiles/appbar.check.png" />
-                </Button.Background>
+            <Button x:Name="cancelButton" Margin="89,439,247,48" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="cancelButton_Click" HorizontalAlignment="Center" Width="120" RenderTransformOrigin="0.56,0.501">
+                <Image Source="/Assets/Tiles/appbar.close.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="82" />
             </Button>
+            <TextBlock x:Name="descriptionTitle" HorizontalAlignment="Left" Margin="32,238,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="22"/>
 
         </Grid>
-        <TextBox x:Name="description" HorizontalAlignment="Left" Height="127" TextWrapping="Wrap" Text="description" VerticalAlignment="Top" Width="456" Margin="14,245,0,0" Grid.Row="1" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="descriptionText" HorizontalAlignment="Left" Height="127" TextWrapping="Wrap" VerticalAlignment="Top" Width="405" Margin="34,273,0,0" Grid.Row="1" TextChanged="TextBox_TextChanged"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

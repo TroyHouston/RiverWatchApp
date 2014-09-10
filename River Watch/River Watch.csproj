@@ -148,6 +148,8 @@
     <Content Include="Assets\Tiles\appbar.camera.png" />
     <Content Include="Assets\Tiles\appbar.check.png" />
     <Content Include="Assets\Tiles\appbar.close.png" />
+    <Content Include="Assets\Tiles\appbar.upload.png" />
+    <Content Include="Assets\Tiles\light.appbar.check.png" />
     <Content Include="Assets\Tiles\appbar.folder.open.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -166,7 +168,6 @@
     </Content>
     <Content Include="Assets\Tiles\riverwatchicon.png" />
     <Content Include="Assets\Tiles\light.appbar.camera.png" />
-    <Content Include="Assets\Tiles\light.appbar.check.png" />
     <Content Include="Assets\Tiles\light.appbar.close.png" />
     <Content Include="Assets\Tiles\light.appbar.folder.open.png" />
   </ItemGroup>
