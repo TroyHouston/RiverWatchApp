@@ -76,6 +76,9 @@ namespace River_Watch
 
             SubmitEvent submit = new SubmitEvent();
             System.Diagnostics.Debug.WriteLine(submit.createJSONSubmit());
+            //Go to preview Page - passing it the picture
+            PhoneApplicationService.Current.State["currentStream"] = currentPhotoStream;
+            NavigationService.Navigate(new Uri("/PreviewPage.xaml", UriKind.Relative));
         }
 
         private void noButton_Click(object sender, RoutedEventArgs e)
