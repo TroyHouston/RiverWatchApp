@@ -29,13 +29,14 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Image x:Name="previewImage" HorizontalAlignment="Center" Height="186" Margin="32,10,0,0" VerticalAlignment="Top" Width="380" Source="/Assets/Tiles/riverwatchicon.png"/>
-            <Button x:Name="uploadButton" Margin="257,439,79,48" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="upload_Click" HorizontalAlignment="Center" Width="120">
+            <Button x:Name="uploadButton" Margin="267,457,69,30" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="upload_Click" HorizontalAlignment="Center" Width="120">
                 <Image Source="/Assets/Tiles/appbar.check.png" HorizontalAlignment="Left" VerticalAlignment="Center" />
             </Button>
-            <Button x:Name="cancelButton" Margin="89,439,247,48" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="cancelButton_Click" HorizontalAlignment="Center" Width="120" RenderTransformOrigin="0.56,0.501">
+            <Button x:Name="cancelButton" Margin="89,457,247,30" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="cancelButton_Click" HorizontalAlignment="Center" Width="120" RenderTransformOrigin="0.56,0.501">
                 <Image Source="/Assets/Tiles/appbar.close.png" HorizontalAlignment="Left" VerticalAlignment="Center" Height="82" />
             </Button>
             <TextBlock x:Name="descriptionTitle" HorizontalAlignment="Left" Margin="32,238,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="22"/>
+            <Button x:Name="tagButton" Content="Add Tags" HorizontalAlignment="Left" Margin="22,385,0,0" VerticalAlignment="Top" Click="tagButton_Click"  Opacity="0.5"/>
 
         </Grid>
         <TextBox x:Name="descriptionText" HorizontalAlignment="Left" Height="127" TextWrapping="Wrap" VerticalAlignment="Top" Width="405" Margin="34,273,0,0" Grid.Row="1" TextChanged="TextBox_TextChanged"/>

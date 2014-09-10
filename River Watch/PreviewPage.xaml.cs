@@ -28,6 +28,10 @@ namespace River_Watch
             previewImage.Source = bmp;
         }
 
+        private void tagButton_Click(object sender, RoutedEventArgs e) { 
+        
+
+        }
 
         private void upload_Click(object sender, RoutedEventArgs e)
         {
@@ -36,7 +40,7 @@ namespace River_Watch
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
