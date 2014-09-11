@@ -39,8 +39,7 @@ namespace River_Watch
 
             s.Append(",");
 
-            // From the Android code, it seems to be doubly-arrayed
-            s.Append("\"tags\":[[");
+            s.Append("\"tags\":[");
 
             for (int i = 0; i < tags.Count; i++)
             {
@@ -52,7 +51,7 @@ namespace River_Watch
                     s.Append(",");
                 }
             }
-            s.Append("]]");
+            s.Append("]");
 
             s.Append(",");
             s.Append("\"physical_location\":"); s.Append("\"addresss\"");
