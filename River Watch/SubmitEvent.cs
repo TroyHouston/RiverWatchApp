@@ -11,6 +11,7 @@ using Microsoft.Devices;
 using System.IO.IsolatedStorage;
 using Microsoft.Phone.BackgroundTransfer;
 using System.Windows;
+using System.Diagnostics;
 
 namespace River_Watch
 {
@@ -173,6 +174,9 @@ namespace River_Watch
             transferRequest.Method = "POST";
             transferRequest.Headers.Add("Content-Type", "multipart/form-data; boundary=" + boundary);
 
+            transferRequest.TransferStatusChanged += new EventHandler<BackgroundTransferEventArgs>(transfer_TransferStatusChanged);
+            transferRequest.TransferProgressChanged += new EventHandler<BackgroundTransferEventArgs>(transfer_TransferProgressChanged);
+
             try
             {
                 BackgroundTransferService.Add(transferRequest);
@@ -232,6 +236,16 @@ namespace River_Watch
                     }
                 }
             }*/
+        }
+
+        private void transfer_TransferProgressChanged(object sender, BackgroundTransferEventArgs e)
+        {
+            Debug.WriteLine(((e.Request.BytesSent * 100.0) / e.Request.TotalBytesToSend).ToString());
+        }
+
+        private void transfer_TransferStatusChanged(object sender, BackgroundTransferEventArgs e)
+        {
+            Debug.WriteLine("transfer status: " + e.Request.TransferStatus.ToString());
         }
 
         private string generatePostData(string boundary, string fileName)
