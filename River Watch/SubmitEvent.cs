@@ -26,20 +26,18 @@ namespace River_Watch
         {
             StringBuilder s = new StringBuilder("{");
             List<String> tags = new List<String>() { "cow", "sheep"};
+            s.Append("\"description\":"); s.Append("\"\"");
+            s.Append(",");
             s.Append("\"geolocation\":");
             s.Append("{");
             s.Append("\"lat\":"); s.Append("3");
             s.Append(",");
             s.Append("\"long\":"); s.Append("4");
             s.Append("}");
-
             s.Append(",");
-
-            s.Append("\"description\":"); s.Append("\"some description\"");
-
+            s.Append("\"name\":"); s.Append("\"dsds\"");
             s.Append(",");
-
-            s.Append("\"tags\":[");
+            s.Append("\"tags\":[[");
 
             for (int i = 0; i < tags.Count; i++)
             {
@@ -51,24 +49,26 @@ namespace River_Watch
                     s.Append(",");
                 }
             }
-            s.Append("]");
+            s.Append("]]");
 
-            s.Append(",");
-            s.Append("\"physical_location\":"); s.Append("\"addresss\"");
+            
+            
+           // s.Append(",");
+           // s.Append("\"physical_location\":"); s.Append("\"addresss\"");
 
             s.Append("}");
             return s.ToString();
         }
 
-        public async void send(Stream fileStream) {
+        public void send(Stream fileStream) {
             // Reset the stream position to the beginning
             fileStream.Position = 0;
             long size = fileStream.Length;
-
+            String boundary = "sfdsfdsfdsfdsfds";
             // Save to file system first 
             try
             {
-
+                
                 using (IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication())
                 {
                     if (!isoStore.DirectoryExists("/shared/transfers"))
@@ -81,9 +81,8 @@ namespace River_Watch
                 {
                     IsolatedStorageFileStream targetStream = isStore.OpenFile(@"/shared/transfers/temp.jpeg", FileMode.Create);
                     {
-
                         // Write everything but the image data
-                        byte[] header = generatePostData.toString();
+                        byte[] header = Encoding.UTF8.GetBytes(generatePostData(boundary, "temp.jpeg"));
                         targetStream.Write(header, 0, header.Length);
 
                         // Initialize the buffer for 4KB disk pages.
@@ -97,7 +96,7 @@ namespace River_Watch
                         }
 
                         // Write the final boundary marker
-                        byte[] footer = "\r\n--" + boundary + "--" + "\r\n"; // <<<<<<----
+                        byte[] footer = Encoding.UTF8.GetBytes("\r\n--" + boundary + "--" + "\r\n"); // <<<<<<----
                         targetStream.Write(footer, 0, footer.Length);
                     }
                     targetStream.Close();
@@ -168,11 +167,11 @@ namespace River_Watch
             // Create the new transfer request, passing in the URI of the file to 
             // be transferred.
             Uri downloadUri = new Uri("shared/transfers/temp.jpeg", UriKind.RelativeOrAbsolute);
-            BackgroundTransferRequest transferRequest = new BackgroundTransferRequest(new Uri("http://www.google.co.nz"));
+            BackgroundTransferRequest transferRequest = new BackgroundTransferRequest(new Uri("http://192.168.1.91:8000/api/image"));
             transferRequest.UploadLocation = (downloadUri);
             // Set the transfer method. GET and POST are supported.
             transferRequest.Method = "POST";
-            transferRequest.Headers.Add("Content-Type", "multipart/form-data; boundary=80bb0a10641341d493fe42ea98084457");
+            transferRequest.Headers.Add("Content-Type", "multipart/form-data; boundary=" + boundary);
 
             try
             {
@@ -238,11 +237,11 @@ namespace River_Watch
         private string generatePostData(string boundary, string fileName)
         {
             StringBuilder headers = new StringBuilder();
-            headers.AppendFormat("--{0}\r\nContent-Disposition name=\"{1}\"\r\n\r\n{2}\r\n",
+            headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"\r\n\r\n{2}\r\n",
                 boundary, "data", createJSONSubmit());
-            headers.AppendFormat("--{0}\r\nContent-Disposition name=\"{1}\"; filename=\"{2}\"\r\n" +
-                "Content-Type: {3}\r\n\r\n",
-                boundary, "file", fileName, "application/octet-stream");
+            headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\n" +
+                "\r\n",
+                boundary, "image", fileName);
 
             return headers.ToString();
         }

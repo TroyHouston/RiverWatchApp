@@ -81,7 +81,7 @@ namespace River_Watch
             PhoneApplicationService.Current.State["currentStream"] = currentPhotoStream;
             NavigationService.Navigate(new Uri("/PreviewPage.xaml", UriKind.Relative));
 
-            //submit.send(currentPhotoStream);
+            submit.send(currentPhotoStream);
         }
 
         private void noButton_Click(object sender, RoutedEventArgs e)
