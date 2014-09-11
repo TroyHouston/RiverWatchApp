@@ -283,10 +283,5 @@ namespace River_Watch
             return headers.ToString();
         }
 
-        private byte[] generateRequestBinary() {
-
-            return new byte[0];
-        }
-
     }
 }
