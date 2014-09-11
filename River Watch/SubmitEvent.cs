@@ -191,51 +191,12 @@ namespace River_Watch
             }
 
 
-            /* Post request consists of three parts 
+            /* Post request consists of two parts 
              * 
-             * 1.  "Incident as JSON: " (followed by submission JSON?)
-             * 2.  "image" (followed by file data assumedly as binary) 
-             * 3.  "data" (followed by submission JSON?) 
+             * 1.  "image" (followed by file data as binary) 
+             * 2.  "data" (followed by submission JSON) 
              * 
-             * Still need to figure out what the difference is. 
              */
-
-            /* Some example code
-             * I think we need to use http client or httpwebrequest
-             * 
-            using (HttpClient client = new HttpClient())
-            {
-
-                using (MultipartFormDataContent content = new MultipartFormDataContent())
-                {
-                    if (request.Headers != null)
-                    {
-                        foreach (KeyValuePair<string, string> header in request.Headers)
-                        {
-                            content.Headers.Add(header.Key, header.Value);
-                        }
-                    }
-                    using (StreamContent streamContent = new StreamContent(photoStream))
-                    {
-                        streamContent.Headers.ContentType = MediaTypeHeaderValue.Parse(request.ContentType);
-                        content.Add(streamContent, multipartName, fileName);
-
-                        // Post the message and ensure a result.
-                        using (HttpResponseMessage response = await client.PostAsync(request.TargerUrl, content))
-                        {
-                            if (response.IsSuccessStatusCode)
-                            {
-                                string responseData = await response.Content.ReadAsStringAsync();
-                                return new RestResponse(ResponseStatus.Success, null) { ResponseData = responseData };
-                            }
-                            else
-                            {
-                                return new RestResponse(ResponseStatus.Fail, null) { Exception = new Exception(response.ReasonPhrase) };
-                            }
-                        }
-                    }
-                }
-            }*/
         }
 
         private void transfer_TransferProgressChanged(object sender, BackgroundTransferEventArgs e)
