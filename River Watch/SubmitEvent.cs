@@ -25,7 +25,7 @@ namespace River_Watch
         public String createJSONSubmit()
         {
             StringBuilder s = new StringBuilder("{");
-            List<String> tags = new List<String>() { "cow", "sheep"};
+            List<String> tags = new List<String>() { "hello", "bye"};
             s.Append("\"description\":"); s.Append("\"\"");
             s.Append(",");
             s.Append("\"geolocation\":");
@@ -37,7 +37,7 @@ namespace River_Watch
             s.Append(",");
             s.Append("\"name\":"); s.Append("\"dsds\"");
             s.Append(",");
-            s.Append("\"tags\":[[");
+            s.Append("\"tags\":[");
 
             for (int i = 0; i < tags.Count; i++)
             {
@@ -49,7 +49,7 @@ namespace River_Watch
                     s.Append(",");
                 }
             }
-            s.Append("]]");
+            s.Append("]");
 
             
             
