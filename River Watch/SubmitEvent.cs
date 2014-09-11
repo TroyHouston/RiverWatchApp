@@ -246,7 +246,63 @@ namespace River_Watch
         private void transfer_TransferStatusChanged(object sender, BackgroundTransferEventArgs e)
         {
             Debug.WriteLine("transfer status: " + e.Request.TransferStatus.ToString());
+            BackgroundTransferRequest transfer = e.Request;
+            switch (transfer.TransferStatus)
+            {
+                case TransferStatus.Completed:
+
+                    // If the status code of a completed transfer is 200 or 206, the
+                    // transfer was successful
+                    if (transfer.StatusCode == 200 || transfer.StatusCode == 206)
+                    {
+                        // Remove the transfer request in order to make room in the 
+                        // queue for more transfers. Transfers are not automatically
+                        // removed by the system.
+                        //RemoveTransferRequest(transfer.RequestId); // TODO
+
+                        // In this example, the downloaded file is moved into the root
+                        // Isolated Storage directory
+                        using (IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication())
+                        {
+                            string filename = "temp.jpeg";//transfer.Tag;
+                            if (isoStore.FileExists(filename))
+                            {
+                                Debug.WriteLine("Deleting previous temp file.");
+                                isoStore.DeleteFile(filename);
+                            }
+                            //isoStore.MoveFile(transfer.DownloadLocation.OriginalString, filename);
+                        }
+                    }
+                    else
+                    {
+                        // This is where you can handle whatever error is indicated by the
+                        // StatusCode and then remove the transfer from the queue. 
+                        //RemoveTransferRequest(transfer.RequestId); // TODO
+
+                        if (transfer.TransferError != null)
+                        {
+                            // Handle TransferError if one exists.
+                        }
+                    }
+                    break;
+                case TransferStatus.WaitingForExternalPower:
+                    //WaitingForExternalPower = true;
+                    break;
+
+                case TransferStatus.WaitingForExternalPowerDueToBatterySaverMode:
+                    //WaitingForExternalPowerDueToBatterySaverMode = true;
+                    break;
+
+                case TransferStatus.WaitingForNonVoiceBlockingNetwork:
+                    //WaitingForNonVoiceBlockingNetwork = true;
+                    break;
+
+                case TransferStatus.WaitingForWiFi:
+                    //WaitingForWiFi = true;
+                    break;
+            }
         }
+        
 
         private string generatePostData(string boundary, string fileName)
         {
