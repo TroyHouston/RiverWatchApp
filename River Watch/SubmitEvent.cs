@@ -82,6 +82,11 @@ namespace River_Watch
                 {
                     IsolatedStorageFileStream targetStream = isStore.OpenFile(@"/shared/transfers/temp.jpeg", FileMode.Create);
                     {
+
+                        // Write everything but the image data
+                        byte[] header = generatePostData.toString();
+                        targetStream.Write(header, 0, header.Length);
+
                         // Initialize the buffer for 4KB disk pages.
                         byte[] readBuffer = new byte[4096];
                         int bytesRead = -1;
@@ -91,6 +96,10 @@ namespace River_Watch
                         {
                             targetStream.Write(readBuffer, 0, bytesRead);
                         }
+
+                        // Write the final boundary marker
+                        byte[] footer = "\r\n--" + boundary + "--" + "\r\n"; // <<<<<<----
+                        targetStream.Write(footer, 0, footer.Length);
                     }
                     targetStream.Close();
                 }
