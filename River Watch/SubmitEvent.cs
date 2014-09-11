@@ -109,52 +109,6 @@ namespace River_Watch
                // fileStream.Close();
             }
 
-            /*
-            StorageFile file = await StorageFile.GetFileFromPathAsync(@"shared/transfers/temp.jpeg");
-
-            //!------!!!
-            var boundary = "DSFDSFWERJWREWJ:LDJF:SDF:SSDF";
-            //!------!!!
-
-            byte[] form = Encoding.UTF8.GetBytes(generatePostData(boundary, file.Name));
-            byte[] fdata = new byte[size];
-            byte[] bound = Encoding.UTF8.GetBytes("\r\n--" + boundary + "\r\n");
-            // read file data
-            IRandomAccessStream ra = await file.OpenAsync(FileAccessMode.Read);
-            IInputStream istream = ra.GetInputStreamAt(0);
-            DataReader reader = new DataReader(istream);
-            await reader.LoadAsync((uint)fdata.Length);
-            reader.ReadBytes(fdata);
-            // connect three parts
-            byte[] data = new byte[form.Length + fdata.Length + bound.Length];
-            Array.Copy(form, 0, data, 0, form.Length);
-            Array.Copy(fdata, 0, data, form.Length, fdata.Length);
-            Array.Copy(bound, 0, data, form.Length + fdata.Length, bound.Length);
-
-            
-            using (IsolatedStorageFile isolatedStorageFile = IsolatedStorageFile.GetUserStoreForApplication())
-            {
-                using (IsolatedStorageFileStream isolatedStorageFileStream = isolatedStorageFile.OpenFile(fileName, FileMode.Open))
-                {
-                    using (StreamReader streamReader = new StreamReader(isolatedStorageFileStream))
-                    {
-                        text = streamReader.ReadToEnd();
-                    }
-                }
-            }
-
-            MemoryStream mem = new MemoryStream(data);
-            IInputStream stream = mem.AsInputStream(); */
-
-            /*BackgroundUploader up = new BackgroundUploader();
-            up.SetRequestHeader("Content-Type", "multipart/form-data; boundary=" + boundary);
-            up.Method = "POST";
-
-            uo = await up.CreateUploadFromStreamAsync(new Uri(url), stream);
-            await uo.StartAsync().AsTask(new Progress<UploadOperation>(OnUploadProgressChanged));
-
-            return data;*/
-
             // Make sure that the required "/shared/transfers" directory exists
             // in isolated storage.
 
