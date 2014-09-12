@@ -60,10 +60,13 @@ namespace River_Watch
         }
 
 
-        /* Post request consists of two parts 
+        /* POST request consists of two parts 
          * 
          * 1.  "image" (followed by file data as binary) 
          * 2.  "data" (followed by submission JSON) 
+         * 
+         * Still needs work on multiple POST requests at the same time. 
+         * Needs to form a queue of BackgroundTransferRequests. 
          * 
          */
         public void send(Stream fileStream)
@@ -232,8 +235,7 @@ namespace River_Watch
             StringBuilder headers = new StringBuilder();
             headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"\r\n\r\n{2}\r\n",
                 boundary, "data", createJSONSubmit());
-            headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\n" +
-                "\r\n",
+            headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\n\r\n",
                 boundary, "image", fileName);
 
             return headers.ToString();
