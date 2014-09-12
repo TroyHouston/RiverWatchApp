@@ -17,12 +17,20 @@ namespace River_Watch
 {
     class SubmitEvent
     {
+        /*
+         * Construct a submit event
+         */
         public SubmitEvent()
         {
 
         }
 
-        // I would heavily suggest a JSON library at some point
+        /*
+         *  Data field - which must be in JSON format. 
+         *
+         *  I would heavily suggest a JSON library at some point.
+         *  Especially if we do more with the phone app and get more results.
+         */
         public String createJSONSubmit()
         {
             StringBuilder s = new StringBuilder("{");
@@ -57,6 +65,23 @@ namespace River_Watch
 
             s.Append("}");
             return s.ToString();
+        }
+
+        /* 
+         * Creates all the headers for the request body.
+         * 
+         * The only thing that is missing from the body is the actual file data. 
+         * (followed by the finally boundary marker)
+         */
+        private string generatePostData(string boundary, string fileName)
+        {
+            StringBuilder headers = new StringBuilder();
+            headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"\r\n\r\n{2}\r\n",
+                boundary, "data", createJSONSubmit());
+            headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\n\r\n",
+                boundary, "image", fileName);
+
+            return headers.ToString();
         }
 
 
@@ -227,18 +252,6 @@ namespace River_Watch
                     //WaitingForWiFi = true;
                     break;
             }
-        }
-
-
-        private string generatePostData(string boundary, string fileName)
-        {
-            StringBuilder headers = new StringBuilder();
-            headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"\r\n\r\n{2}\r\n",
-                boundary, "data", createJSONSubmit());
-            headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\n\r\n",
-                boundary, "image", fileName);
-
-            return headers.ToString();
         }
 
     }
