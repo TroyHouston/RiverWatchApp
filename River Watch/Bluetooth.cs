@@ -19,7 +19,8 @@ namespace River_Watch
     class Bluetooth
     {
         private DataReader dataReader;
-        private StreamSocket socket;
+        private StreamSocket socket;
+
         private async Task<string> GetMessage()
         {
             if (dataReader == null) dataReader = new DataReader(socket.InputStream);
@@ -29,7 +30,7 @@ namespace River_Watch
             return dataReader.ReadString(messageLen);
         }
 
-        private async void buttonDiscoverDevices_Click(object sender)
+        public async void buttonDiscoverDevices_Click()
         {
             try
             {
@@ -45,7 +46,7 @@ namespace River_Watch
                 StringBuilder list = new StringBuilder();
                 foreach (PeerInformation p in peers)
                 {
-                    list.AppendLine(p.DisplayName);
+                    list.AppendLine(p.HostName + " : " + p.ServiceName);
                 }
 
                 
@@ -54,7 +55,7 @@ namespace River_Watch
                 PeerInformation partner = peers[0];
                 // Attempt a connection
                 socket = new StreamSocket();
-                await socket.ConnectAsync(partner.HostName, partner.ServiceName);
+                await socket.ConnectAsync(partner.HostName, "1");
 
                 string message = await GetMessage();
 
