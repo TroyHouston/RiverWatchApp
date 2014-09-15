@@ -18,6 +18,11 @@ namespace River_Watch
 {
     public partial class MainPage : PhoneApplicationPage
     {
+
+        // Stored lat:long coordinates. Updated when camera button is pressed.
+        double lat, lon;
+        bool locationOn;
+
         // Constructor
         public MainPage()
         {
@@ -63,7 +68,7 @@ namespace River_Watch
             else
             {
                 MessageBoxResult result =
-                    MessageBox.Show("This app accesses your phone's location. Is that ok?", "Location", MessageBoxButton.OKCancel);
+                    MessageBox.Show("This app accesses your phone's location & something private data. Is that ok?", "Location & Privacy", MessageBoxButton.OKCancel);
 
                 if (result == MessageBoxResult.OK) {
                     IsolatedStorageSettings.ApplicationSettings["LocationConsent"] = true;
@@ -78,7 +83,9 @@ namespace River_Watch
         
         private void Camera_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/CameraConfirm.xaml?msg=" + Constants.MAIN_PAGE + "&src=" + "camera", UriKind.Relative));
+            getGeoLocation();
+            if (locationOn)
+                NavigationService.Navigate(new Uri("/CameraConfirm.xaml?msg=" + Constants.MAIN_PAGE + "&src=" + "camera", UriKind.Relative));
         }
 
         private void Folder_Click(object sender, RoutedEventArgs e)
@@ -97,6 +104,7 @@ namespace River_Watch
 
             Geolocator geolocator = new Geolocator();
             geolocator.DesiredAccuracyInMeters = 50;
+            locationOn = true;
 
             try
             {
@@ -105,9 +113,12 @@ namespace River_Watch
                     timeout: TimeSpan.FromSeconds(10)
                     );
 
-                // Print Geolocation to console
+                // Print Geolocation to console 
+                lat = geoposition.Coordinate.Latitude;
+                lon = geoposition.Coordinate.Longitude;
                 System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Latitude.ToString("0.00"));
                 System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Longitude.ToString("0.00"));
+                
             }
             catch (Exception ex)
             {
@@ -115,6 +126,13 @@ namespace River_Watch
                 {
                     // the application does not have the right capability or the location master switch is off
                     System.Diagnostics.Debug.WriteLine("location  is disabled in phone settings.");
+                    MessageBoxResult ask =
+                    MessageBox.Show("Your Location seems to be turned off. Please turn it on to use this application", "Settings", MessageBoxButton.OK);
+                    locationOn = false;
+                    if (ask == MessageBoxResult.OK)
+                    {                       
+                        // What happens when you say OK. Preferable not go to another screen. Add a global bool?
+                    }
                 }
                 //else
                 {
