@@ -145,7 +145,7 @@ namespace River_Watch
         private void navBarSettings(object sender, EventArgs e)
         {
            //Go to another page 
-           // NavigationService.Navigate(new Uri("/Page1.xaml", UriKind.RelativeOrAbsolute));
+           NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void navBarHelp(object sender, EventArgs e)
