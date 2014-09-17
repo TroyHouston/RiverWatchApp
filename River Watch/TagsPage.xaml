@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="River_Watch.TagsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid ShowGridLines="False" x:Name="LayoutRoot"  Width="480" Background="{StaticResource PhoneChromeBrush}" RenderTransformOrigin="0.456,0.507" Margin="0,0,0,-93">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <CheckBox Content="Cow" Grid.Column="0" Grid.Row="0"/>
+        <CheckBox Content="Dog" Grid.Column="0" Grid.Row="1"/>
+        <CheckBox Content="Drain" Grid.Column="0" Grid.Row="2"/>
+        <CheckBox Content="Goat"  Grid.Column="0" Grid.Row="3" />
+        <CheckBox Content="Horse" Grid.Column="0" Grid.Row="4"/>
+        <CheckBox Content="Litter" Grid.Column="0" Grid.Row="5"/>
+        <CheckBox Content="Paint" Grid.Column="1" Grid.Row="0"/>
+        <CheckBox Content="Pollution" Grid.Column="1" Grid.Row="1"/>
+        <CheckBox Content="River" Grid.Column="1" Grid.Row="2"/>
+        <CheckBox Content="Runoff" Grid.Column="1" Grid.Row="3"/>
+        <CheckBox Content="Sheep" Grid.Column="1" Grid.Row="4"/>
+        <CheckBox Content="Stock" Grid.Column="1" Grid.Row="5"/>
+        <CheckBox Content="Waterway" Grid.Column="1" Grid.Row="6"/>
+        <Button Name="Add" Content="Add" Grid.Column="0" Grid.Row="7" />
+        <Button Name="Cancel" Content="Cancel" Grid.Column="1" Grid.Row="7" />
+    </Grid>
+
+</UserControl>
