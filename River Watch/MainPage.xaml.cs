@@ -44,7 +44,7 @@ namespace River_Watch
             {
                 // Change the UI for Light theme
                 System.Diagnostics.Debug.WriteLine("Light");
-                themeFolderBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.folder.open.png", UriKind.Relative));
+                themeFolderBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.upload.png", UriKind.Relative));
                 themeCameraBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.camera.png", UriKind.Relative));
                 folderButton.Background = themeFolderBrush;
                 cameraButton.Background = themeCameraBrush;
@@ -53,7 +53,7 @@ namespace River_Watch
             {
                 // Change the UI for Dark theme
                 System.Diagnostics.Debug.WriteLine("Dark");
-                themeFolderBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.folder.open.png", UriKind.Relative));
+                themeFolderBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.upload.png", UriKind.Relative));
                 themeCameraBrush.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.camera.png", UriKind.Relative));
                 folderButton.Background = themeFolderBrush;
                 cameraButton.Background = themeCameraBrush;

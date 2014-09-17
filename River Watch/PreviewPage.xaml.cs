@@ -17,10 +17,9 @@ namespace River_Watch
 {
     public partial class PreviewPage : PhoneApplicationPage
     {
-        //For the tags popup
+ 
         private Popup tagsPopUp;
         private TagsPage tags;
-
 
         public PreviewPage()
         {
@@ -34,8 +33,6 @@ namespace River_Watch
             previewImage.Source = bmp;
             //Set up and initialize the tags page
             tagsPopUp = new Popup();
-           // tagsPopUp.Height = 500;
-           // tagsPopUp.Width = 400;
             tagsPopUp.VerticalOffset = 80;
             tags = new TagsPage();
             tagsPopUp.Child = tags;
@@ -51,7 +48,7 @@ namespace River_Watch
         }
 
         private void tagButton_Click(object sender, RoutedEventArgs e) {
-
+            //Toggle popup visibility
             if (tagsPopUp.IsOpen == false)
             {
                 tagsPopUp.IsOpen = true;

@@ -173,6 +173,7 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Tiles\light.appbar.upload.png" />
     <Content Include="Assets\Tiles\riverwatchicon.png" />
     <Content Include="Assets\Tiles\light.appbar.camera.png" />
     <Content Include="Assets\Tiles\light.appbar.close.png" />

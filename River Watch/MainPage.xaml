@@ -66,7 +66,7 @@
                 <!-- <Image Source="/Assets/Tiles/appbar.folder.open.png" HorizontalAlignment="Left" VerticalAlignment="Center" />
                  -->
                 <Button.Background>
-                    <ImageBrush  ImageSource="/Assets/Tiles/appbar.folder.open.png" />
+                    <ImageBrush  ImageSource="/Assets/Tiles/appbar.upload.png" />
                 </Button.Background>
             </Button>
             <Image HorizontalAlignment="Left" Height="362" VerticalAlignment="Top" Width="369" Source="/Assets/Tiles/riverwatchicon.png" Margin="46,10,0,0" RenderTransformOrigin="0.493,0.662"/>
