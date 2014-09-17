@@ -19,7 +19,7 @@ namespace River_Watch
     {
  
         private Popup tagsPopUp;
-        private TagsPage tags;
+        private TagsPage tagsUserControl;
 
         public PreviewPage()
         {
@@ -34,14 +34,14 @@ namespace River_Watch
             //Set up and initialize the tags page
             tagsPopUp = new Popup();
             tagsPopUp.VerticalOffset = 80;
-            tags = new TagsPage();
-            tagsPopUp.Child = tags;
+            tagsUserControl = new TagsPage();
+            tagsPopUp.Child = tagsUserControl;
             //Set functionality for the buttons on the tags page
-            tags.Add.Click += (s, args) =>
+            tagsUserControl.Add.Click += (s, args) =>
             {
                 tagsPopUp.IsOpen = false;
             };
-            tags.Cancel.Click += (s, args) =>
+            tagsUserControl.Cancel.Click += (s, args) =>
             {
                 tagsPopUp.IsOpen = false;
             };
@@ -56,6 +56,7 @@ namespace River_Watch
             else {
                 tagsPopUp.IsOpen = false; 
             }
+
         }
 
 
@@ -72,6 +73,21 @@ namespace River_Watch
         private void upload_Click(object sender, RoutedEventArgs e)
         {
             tagsPopUp.IsOpen = false;
+            List<String> tags = tagsUserControl.getTags();
+            //No tags selected
+            if (tags.Count == 0){
+                //SHOULD CREATE DIALOG FOR THIS.
+                System.Diagnostics.Debug.WriteLine("No tags selected, ");
+            }
+            else
+            {
+                //Test the list of tags
+                for (int i = 0; i < tags.Count; i++)
+                {
+                    System.Diagnostics.Debug.WriteLine("tag selected: " + tags[i]);
+                }
+                //Submit the photo goes here along with the tags...
+            }
 
         }
 
