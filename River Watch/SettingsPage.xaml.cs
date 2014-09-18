@@ -46,7 +46,7 @@ namespace River_Watch
             BtnRevPub.IsEnabled = loc;
         }
 
-        private void CbWifiOnly(object sender, RoutedEventArgs e)
+        private void CbWifiOnly_Toggle(object sender, RoutedEventArgs e)
         {
             IsolatedStorageSettings.ApplicationSettings["WifiOnly"] = (sender as CheckBox).IsChecked;
             IsolatedStorageSettings.ApplicationSettings.Save();

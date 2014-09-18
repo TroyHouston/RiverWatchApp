@@ -34,7 +34,7 @@
             </TextBlock>
             <Button x:Name="BtnRevPub" Content="Revoke" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-1.517,-0.458" Margin="10,183,0,0" FontFamily="Portable User Interface" Click="BtnRevPub_Click"/>
             <TextBlock x:Name="P_Phot_Text" HorizontalAlignment="Left" Margin="139,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="254" Text="Publish Photos"/>
-            <CheckBox x:Name="CbWifiOnly" Content="Upload on wifi only" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Portable User Interface" Checked="CbWifiOnly"/>
+            <CheckBox x:Name="CbWifiOnly" Content="Upload on wifi only" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Portable User Interface" Checked="CbWifiOnly_Toggle"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,82,0,0" TextWrapping="Wrap" Text="Consent" VerticalAlignment="Top" FontSize="24"/>
 
         </Grid>
