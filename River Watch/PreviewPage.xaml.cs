@@ -12,6 +12,7 @@ using Microsoft.Phone.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls.Primitives;
 using System.ComponentModel;
+using System.Windows.Media;
 
 namespace River_Watch
 {
@@ -45,6 +46,33 @@ namespace River_Watch
             {
                 tagsPopUp.IsOpen = false;
             };
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            //Checks the current theme being used
+            base.OnNavigatedTo(e);
+            var theme = (Visibility)Resources["PhoneLightThemeVisibility"];
+            ImageBrush themeOkayButton = new ImageBrush();
+            ImageBrush themeCancelButton = new ImageBrush();
+            if (theme == System.Windows.Visibility.Visible)
+            {
+                // Change the UI for Light theme
+                System.Diagnostics.Debug.WriteLine("Light");
+                themeOkayButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.check.png", UriKind.Relative));
+                themeCancelButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.close.png", UriKind.Relative));
+                uploadButton.Background = themeOkayButton;
+                cancelButton.Background = themeCancelButton;
+            }
+            else
+            {
+                // Change the UI for Dark theme
+                System.Diagnostics.Debug.WriteLine("Dark");
+                themeOkayButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.check.png", UriKind.Relative));
+                themeCancelButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.close.png", UriKind.Relative));
+                uploadButton.Background = themeOkayButton;
+                cancelButton.Background = themeCancelButton;
+            }
         }
 
         private void tagButton_Click(object sender, RoutedEventArgs e) {
