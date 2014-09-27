@@ -21,6 +21,8 @@ namespace River_Watch
  
         private Popup tagsPopUp;
         private TagsPage tagsUserControl;
+        private Stream picture;
+        private SubmitEvent submit;
 
         public PreviewPage()
         {
@@ -28,12 +30,13 @@ namespace River_Watch
 
             //Set preview picture
             var currentPhotoStream = PhoneApplicationService.Current.State["currentStream"];
-            Stream picture = (Stream)currentPhotoStream;
+            picture = (Stream)currentPhotoStream;
             BitmapImage bmp = new BitmapImage();
             bmp.SetSource(picture);
             previewImage.Source = bmp;
             //Set up and initialize the tags page
             tagsPopUp = new Popup();
+            submit = new SubmitEvent();
             tagsPopUp.VerticalOffset = 80;
             tagsUserControl = new TagsPage();
             tagsPopUp.Child = tagsUserControl;
@@ -115,6 +118,11 @@ namespace River_Watch
                     System.Diagnostics.Debug.WriteLine("tag selected: " + tags[i]);
                 }
                 //Submit the photo goes here along with the tags...
+
+                System.Diagnostics.Debug.WriteLine("SENDING IMAGE TO SERVER...");
+
+                
+                submit.send(picture,tags);
             }
 
         }

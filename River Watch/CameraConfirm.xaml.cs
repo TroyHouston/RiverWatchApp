@@ -72,16 +72,12 @@ namespace River_Watch
         private void yesButton_Click(object sender, RoutedEventArgs e)
         {
             // Attempt to send the image to the server
-            System.Diagnostics.Debug.WriteLine("SENDING IMAGE TO SERVER...");
-
-            SubmitEvent submit = new SubmitEvent();
-            System.Diagnostics.Debug.WriteLine(submit.createJSONSubmit());
 
             //Go to preview Page - passing it the picture
             PhoneApplicationService.Current.State["currentStream"] = currentPhotoStream;
             NavigationService.Navigate(new Uri("/PreviewPage.xaml", UriKind.Relative));
 
-            submit.send(currentPhotoStream);
+            
         }
 
         private void noButton_Click(object sender, RoutedEventArgs e)
