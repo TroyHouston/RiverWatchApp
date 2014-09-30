@@ -31,7 +31,7 @@ namespace River_Watch
          *  I would heavily suggest a JSON library at some point.
          *  Especially if we do more with the phone app and get more results.
          */
-        public String createJSONSubmit(List<String> tags)
+        public String createJSONSubmit(List<String> tags, double lat, double lon)
         {
             StringBuilder s = new StringBuilder("{");
 
@@ -39,9 +39,9 @@ namespace River_Watch
             s.Append(",");
             s.Append("\"geolocation\":");
             s.Append("{");
-            s.Append("\"lat\":"); s.Append("3");
+            s.Append("\"lat\":"); s.Append(lat);
             s.Append(",");
-            s.Append("\"long\":"); s.Append("4");
+            s.Append("\"long\":"); s.Append(lon);
             s.Append("}");
             s.Append(",");
             s.Append("\"name\":"); s.Append("\"dsds\"");
@@ -77,7 +77,7 @@ namespace River_Watch
         {
             StringBuilder headers = new StringBuilder();
             headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"\r\n\r\n{2}\r\n",
-                boundary, "data", createJSONSubmit(tags));
+                boundary, "data", createJSONSubmit(tags, 3, 4));
             headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\n\r\n",
                 boundary, "image", fileName);
 
