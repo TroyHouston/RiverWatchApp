@@ -63,7 +63,7 @@ namespace River_Watch
                 bmp.SetSource(currentPhotoStream);
                 returnedImage.Source = bmp;
             }
-            else
+            else if (e.TaskResult == TaskResult.None)
             {
                 cameraCaptureTask.Show();
             }
