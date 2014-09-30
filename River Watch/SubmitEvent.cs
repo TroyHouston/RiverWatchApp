@@ -231,17 +231,16 @@ namespace River_Watch
                         // removed by the system.
                         RemoveTransferRequest(transfer.RequestId);
 
-                        // In this example, the downloaded file is moved into the root
-                        // Isolated Storage directory
                         using (IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication())
                         {
                             string filename = "/shared/transfers/" + transfer.Tag;
+
                             if (isoStore.FileExists(filename))
                             {
                                 Debug.WriteLine("Deleting previous temp file.");
                                 isoStore.DeleteFile(filename);
                             }
-                            //isoStore.MoveFile(transfer.DownloadLocation.OriginalString, filename);
+
                         }
                     }
                     else
