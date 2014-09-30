@@ -94,7 +94,7 @@ namespace River_Watch
          * Needs to form a queue of BackgroundTransferRequests. 
          * 
          */
-        public void send(Stream fileStream, List<String> tags)
+        public bool send(Stream fileStream, List<String> tags)
         {
             // Reset the stream position to the beginning
             fileStream.Position = 0;
@@ -120,6 +120,7 @@ namespace River_Watch
                     }
                 }
 
+                // Encoding with UTF-8 will probably still cause issues when it is outside Latin range
                 using (IsolatedStorageFile isStore = IsolatedStorageFile.GetUserStoreForApplication())
                 {
                     IsolatedStorageFileStream targetStream = isStore.OpenFile(@"/shared/transfers/temp.jpeg", FileMode.Create);
@@ -139,7 +140,7 @@ namespace River_Watch
                         }
 
                         // Write the final boundary marker
-                        byte[] footer = Encoding.UTF8.GetBytes("\r\n--" + boundary + "--" + "\r\n"); // <<<<<<----
+                        byte[] footer = Encoding.UTF8.GetBytes("\r\n--" + boundary + "--" + "\r\n");
                         targetStream.Write(footer, 0, footer.Length);
                     }
                     targetStream.Close();
@@ -156,6 +157,8 @@ namespace River_Watch
             {
                 // Note: Instead of showing a message to the user, you could store the
                 // requested file URI in isolated storage and add it to the queue later.
+                MessageBox.Show("Unable to add background transfer request. Queue is full.");
+                return false;
             }
 
             // Create the new transfer request, passing in the URI of the file to 
@@ -181,12 +184,15 @@ namespace River_Watch
             catch (InvalidOperationException ex)
             {
                 MessageBox.Show("Unable to add background transfer request. " + ex.Message);
+                return false;
             }
             catch (Exception)
             {
                 MessageBox.Show("Unable to add background transfer request.");
+                return false;
             }
 
+            return true;
         }
 
         private void transfer_TransferProgressChanged(object sender, BackgroundTransferEventArgs e)
