@@ -164,7 +164,13 @@ namespace River_Watch
             // Create the new transfer request, passing in the URI of the file to 
             // be transferred.
             Uri downloadUri = new Uri("shared/transfers/temp.jpeg", UriKind.RelativeOrAbsolute);
+            
+            /* !!!!! FOR USE IN PRODUCTION !!!!!! */
+            //BackgroundTransferRequest transferRequest = new BackgroundTransferRequest(new Uri(Constants.SERVER_URL + Constants.SUBMIT_PATH));
+           
+            /* !!!!! FOR USE IN TESTING !!!!! */
             BackgroundTransferRequest transferRequest = new BackgroundTransferRequest(new Uri("http://192.168.1.91:8000/api/image"));
+            
             transferRequest.UploadLocation = (downloadUri);
             // Set the transfer method. GET and POST are supported.
             transferRequest.Method = "POST";
