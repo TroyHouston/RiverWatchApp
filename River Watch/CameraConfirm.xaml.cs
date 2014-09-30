@@ -63,9 +63,8 @@ namespace River_Watch
                 bmp.SetSource(currentPhotoStream);
                 returnedImage.Source = bmp;
             }
-            else if (e.TaskResult == TaskResult.None)
-            {
-                cameraCaptureTask.Show();
+            else {
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             }
         }
 
