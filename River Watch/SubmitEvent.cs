@@ -215,7 +215,7 @@ namespace River_Watch
                         // Remove the transfer request in order to make room in the 
                         // queue for more transfers. Transfers are not automatically
                         // removed by the system.
-                        //RemoveTransferRequest(transfer.RequestId); // TODO
+                        RemoveTransferRequest(transfer.RequestId);
 
                         // In this example, the downloaded file is moved into the root
                         // Isolated Storage directory
@@ -234,7 +234,7 @@ namespace River_Watch
                     {
                         // This is where you can handle whatever error is indicated by the
                         // StatusCode and then remove the transfer from the queue. 
-                        //RemoveTransferRequest(transfer.RequestId); // TODO
+                        RemoveTransferRequest(transfer.RequestId);
 
                         if (transfer.TransferError != null)
                         {
@@ -257,6 +257,23 @@ namespace River_Watch
                 case TransferStatus.WaitingForWiFi:
                     //WaitingForWiFi = true;
                     break;
+            }
+        }
+
+        private void RemoveTransferRequest(string transferID)
+        {
+            // Use Find to retrieve the transfer request with the specified ID.
+            BackgroundTransferRequest transferToRemove = BackgroundTransferService.Find(transferID);
+
+            // Try to remove the transfer from the background transfer service.
+            try
+            {
+                BackgroundTransferService.Remove(transferToRemove);
+            }
+            catch (Exception e)
+            {
+                // Handle the exception.
+                Debug.WriteLine(e);
             }
         }
 
