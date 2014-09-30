@@ -121,8 +121,18 @@ namespace River_Watch
 
                 System.Diagnostics.Debug.WriteLine("SENDING IMAGE TO SERVER...");
 
-                
-                submit.send(picture, tags, 3, 4);
+                var lat = PhoneApplicationService.Current.State["latitude"];
+                var lon = PhoneApplicationService.Current.State["longitude"];
+
+                System.Diagnostics.Debug.WriteLine((double)lat);
+                System.Diagnostics.Debug.WriteLine((double)lon);
+
+                if (lat == null || lon == null) {
+                    MessageBox.Show("GPS coordinates were not found.");
+                    return;
+                }
+
+                submit.send(picture, tags, (double)lat, (double)lon);
             }
 
         }

@@ -84,6 +84,11 @@ namespace River_Watch
         private void Camera_Click(object sender, RoutedEventArgs e)
         {
             getGeoLocation();
+
+            // Clear previous geolocation stored
+            PhoneApplicationService.Current.State["latitude"] = null;
+            PhoneApplicationService.Current.State["longitude"] = null;
+
             if (locationOn)
                 NavigationService.Navigate(new Uri("/CameraConfirm.xaml?msg=" + Constants.MAIN_PAGE + "&src=" + "camera", UriKind.Relative));
         }
@@ -115,7 +120,10 @@ namespace River_Watch
 
                 // Print Geolocation to console 
                 lat = geoposition.Coordinate.Latitude;
+                PhoneApplicationService.Current.State["latitude"] = lat;
                 lon = geoposition.Coordinate.Longitude;
+                PhoneApplicationService.Current.State["longitude"] = lon;
+
                 System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Latitude.ToString("0.00"));
                 System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Longitude.ToString("0.00"));
                 
@@ -134,9 +142,11 @@ namespace River_Watch
                         // What happens when you say OK. Preferable not go to another screen. Add a global bool?
                     }
                 }
-                //else
+                else
                 {
                     // something else happened acquring the location
+                    // Simply retry?
+                    //getGeoLocation();
                 }
             }
         }
