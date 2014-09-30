@@ -42,9 +42,6 @@ namespace River_Watch
                         if (msg.Equals("camera")) {
                             cameraCaptureTask.Show();
                         }
-                        else if (msg.Equals("folder")) { 
-                            // display folder? 
-                        }
                     }
                     
                 }
@@ -61,11 +58,14 @@ namespace River_Watch
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                //MessageBox.Show(e.ChosenPhoto.Length.ToString());
                 BitmapImage bmp = new BitmapImage();
                 currentPhotoStream = e.ChosenPhoto;
                 bmp.SetSource(currentPhotoStream);
                 returnedImage.Source = bmp;
+            }
+            else
+            {
+                cameraCaptureTask.Show();
             }
         }
 
