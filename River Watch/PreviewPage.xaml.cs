@@ -124,13 +124,13 @@ namespace River_Watch
                 var lat = PhoneApplicationService.Current.State["latitude"];
                 var lon = PhoneApplicationService.Current.State["longitude"];
 
-                System.Diagnostics.Debug.WriteLine((double)lat);
-                System.Diagnostics.Debug.WriteLine((double)lon);
-
                 if (lat == null || lon == null) {
                     MessageBox.Show("GPS coordinates were not found.");
                     return;
                 }
+
+                System.Diagnostics.Debug.WriteLine((double)lat);
+                System.Diagnostics.Debug.WriteLine((double)lon);
 
                 submit.send(picture, tags, (double)lat, (double)lon);
             }

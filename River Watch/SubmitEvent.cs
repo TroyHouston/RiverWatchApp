@@ -71,7 +71,7 @@ namespace River_Watch
          * Creates all the headers for the request body.
          * 
          * The only thing that is missing from the body is the actual file data. 
-         * (followed by the finally boundary marker)
+         * (followed by the final boundary marker)
          */
         private string generatePostData(string boundary, string fileName, List<String> tags, double lat, double lon)
         {
