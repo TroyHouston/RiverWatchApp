@@ -73,11 +73,11 @@ namespace River_Watch
          * The only thing that is missing from the body is the actual file data. 
          * (followed by the finally boundary marker)
          */
-        private string generatePostData(string boundary, string fileName, List<String> tags)
+        private string generatePostData(string boundary, string fileName, List<String> tags, double lat, double lon)
         {
             StringBuilder headers = new StringBuilder();
             headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"\r\n\r\n{2}\r\n",
-                boundary, "data", createJSONSubmit(tags, 3, 4));
+                boundary, "data", createJSONSubmit(tags, lat, lon));
             headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\n\r\n",
                 boundary, "image", fileName);
 
@@ -94,7 +94,7 @@ namespace River_Watch
          * Needs to form a queue of BackgroundTransferRequests. 
          * 
          */
-        public bool send(Stream fileStream, List<String> tags)
+        public bool send(Stream fileStream, List<String> tags, double lat, double lon)
         {
             // Reset the stream position to the beginning
             fileStream.Position = 0;
@@ -126,7 +126,7 @@ namespace River_Watch
                     IsolatedStorageFileStream targetStream = isStore.OpenFile(@"/shared/transfers/temp.jpeg", FileMode.Create);
                     {
                         // Write everything but the image data
-                        byte[] header = Encoding.UTF8.GetBytes(generatePostData(boundary, "temp.jpeg", tags));
+                        byte[] header = Encoding.UTF8.GetBytes(generatePostData(boundary, "temp.jpeg", tags, lat, lon));
                         targetStream.Write(header, 0, header.Length);
 
                         // Initialize the buffer for 4KB disk pages.

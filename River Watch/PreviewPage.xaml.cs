@@ -122,7 +122,7 @@ namespace River_Watch
                 System.Diagnostics.Debug.WriteLine("SENDING IMAGE TO SERVER...");
 
                 
-                submit.send(picture, tags);
+                submit.send(picture, tags, 3, 4);
             }
 
         }
