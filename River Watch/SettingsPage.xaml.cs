@@ -45,13 +45,13 @@ namespace River_Watch
         {
             bool loc = (bool)IsolatedStorageSettings.ApplicationSettings["LocationConsent"];
             A_Loc_Text.Text = "Access Location";
-            if (loc) A_Loc_Text.Text += " - Disabled";
+            if (!loc) A_Loc_Text.Text += " - Disabled";
             BtnRevLoc.IsEnabled = loc;
             
             bool pub = (bool)IsolatedStorageSettings.ApplicationSettings["PublishConsent"];
             P_Phot_Text.Text = "Pubish Photos";
-            if (pub) P_Phot_Text.Text += " - Disabled";
-            BtnRevPub.IsEnabled = loc;
+            if (!pub) P_Phot_Text.Text += " - Disabled";
+            BtnRevPub.IsEnabled = pub;
         }
     }
 }
