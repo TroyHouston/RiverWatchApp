@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{7f3a22f3-64bd-4d8c-9fa7-877a662ed51e}" Title="River_Watch" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="River_Watch author" Description="Sample description" Publisher="River_Watch" PublisherID="{db28fb25-0a7d-486d-be38-9b098a12f517}">
+  <App xmlns="" ProductID="{7f3a22f3-64bd-4d8c-9fa7-877a662ed51e}" Title="River Watch" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="River_Watch author" Description="Sample description" Publisher="River_Watch" PublisherID="{db28fb25-0a7d-486d-be38-9b098a12f517}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
