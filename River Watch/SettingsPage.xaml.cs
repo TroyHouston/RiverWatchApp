@@ -15,6 +15,14 @@ namespace River_Watch
     {
         public SettingsPage()
         {
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains("LocationConsent"))
+            {
+                IsolatedStorageSettings.ApplicationSettings["LocationConsent"] = false;
+            }
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains("PublishConsent"))
+            {
+                IsolatedStorageSettings.ApplicationSettings["PublishConsent"] = false;
+            }
             InitializeComponent();
             Update_Page();
         }
@@ -45,13 +53,5 @@ namespace River_Watch
             if (pub) P_Phot_Text.Text += " - Disabled";
             BtnRevPub.IsEnabled = loc;
         }
-
-        private void CbWifiOnly_Toggle(object sender, RoutedEventArgs e)
-        {
-            IsolatedStorageSettings.ApplicationSettings["WifiOnly"] = (sender as CheckBox).IsChecked;
-            IsolatedStorageSettings.ApplicationSettings.Save();
-        }
-
-
     }
 }
