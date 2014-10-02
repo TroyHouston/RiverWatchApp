@@ -113,6 +113,7 @@ namespace River_Watch
 
             try
             {
+                // Could make this public
                 Geoposition geoposition = await geolocator.GetGeopositionAsync(
                     maximumAge: TimeSpan.FromMinutes(0),
                     timeout: TimeSpan.FromSeconds(10)
@@ -126,6 +127,8 @@ namespace River_Watch
 
                 System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Latitude.ToString("0.00"));
                 System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Longitude.ToString("0.00"));
+
+                MessageBox.Show("Geoposition found - lat: " + lat + " long: " + lon, "Location", MessageBoxButton.OKCancel);
                 
             }
             catch (Exception ex)
