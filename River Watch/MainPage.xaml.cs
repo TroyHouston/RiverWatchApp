@@ -90,7 +90,7 @@ namespace River_Watch
             PhoneApplicationService.Current.State["longitude"] = null;
 
             if (locationOn)
-                NavigationService.Navigate(new Uri("/CameraConfirm.xaml?msg=" + Constants.MAIN_PAGE + "&src=" + "camera", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/PreviewPage.xaml?msg=" + Constants.MAIN_PAGE + "&src=" + "camera", UriKind.Relative));
         }
 
         private void Folder_Click(object sender, RoutedEventArgs e)

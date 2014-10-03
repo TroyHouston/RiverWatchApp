@@ -20,19 +20,23 @@ namespace River_Watch
     {
         private Popup tagsPopUp;
         private TagsPage tagsUserControl;
-        private Stream picture;
         private SubmitEvent submit;
+        CameraCaptureTask cameraCaptureTask;
+        Stream currentPhotoStream;
 
         public PreviewPage()
         {
             InitializeComponent();
+            cameraCaptureTask = new CameraCaptureTask();
+            cameraCaptureTask.Completed += new EventHandler<PhotoResult>(cameraCaptureTask_Completed);
 
             //Set preview picture
-            var currentPhotoStream = PhoneApplicationService.Current.State["currentStream"];
-            picture = (Stream)currentPhotoStream;
-            BitmapImage bmp = new BitmapImage();
-            bmp.SetSource(picture);
-            previewImage.Source = bmp;
+            //var currentPhotoStream = PhoneApplicationService.Current.State["currentStream"];
+            //picture = (Stream)currentPhotoStream;
+            //BitmapImage bmp = new BitmapImage();
+            //bmp.SetSource(picture);
+            //previewImage.Source = bmp;
+
             //Set up and initialize the tags page
             tagsPopUp = new Popup();
             submit = new SubmitEvent();
@@ -52,29 +56,54 @@ namespace River_Watch
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            //Checks the current theme being used
-            base.OnNavigatedTo(e);
-            var theme = (Visibility)Resources["PhoneLightThemeVisibility"];
-            ImageBrush themeOkayButton = new ImageBrush();
-            ImageBrush themeCancelButton = new ImageBrush();
-            if (theme == System.Windows.Visibility.Visible)
+            string msg = "";
+
+            if (NavigationContext.QueryString.TryGetValue("msg", out msg))
             {
-                // Change the UI for Light theme
-                System.Diagnostics.Debug.WriteLine("Light");
-                themeOkayButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.check.png", UriKind.Relative));
-                themeCancelButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.close.png", UriKind.Relative));
-                uploadButton.Background = themeOkayButton;
-                cancelButton.Background = themeCancelButton;
+                if (msg.Equals(Constants.MAIN_PAGE))
+                {
+                    // Query strings appear permanent until removed
+                    // We only want this to run when we came directly from the main page
+                    NavigationContext.QueryString.Remove("msg");
+
+                    if (NavigationContext.QueryString.TryGetValue("src", out msg))
+                    {
+                        if (msg.Equals("camera"))
+                        {
+                            cameraCaptureTask.Show();
+                        }
+                    }
+
+                }
             }
             else
             {
-                // Change the UI for Dark theme
-                System.Diagnostics.Debug.WriteLine("Dark");
-                themeOkayButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.check.png", UriKind.Relative));
-                themeCancelButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.close.png", UriKind.Relative));
-                uploadButton.Background = themeOkayButton;
-                cancelButton.Background = themeCancelButton;
+                // We only want the switching navigation to appear if the camera isn't coming up
+                //Checks the current theme being used
+                base.OnNavigatedTo(e);
+                var theme = (Visibility)Resources["PhoneLightThemeVisibility"];
+                ImageBrush themeOkayButton = new ImageBrush();
+                ImageBrush themeCancelButton = new ImageBrush();
+                if (theme == System.Windows.Visibility.Visible)
+                {
+                    // Change the UI for Light theme
+                    System.Diagnostics.Debug.WriteLine("Light");
+                    themeOkayButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.check.png", UriKind.Relative));
+                    themeCancelButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.close.png", UriKind.Relative));
+                    uploadButton.Background = themeOkayButton;
+                    cancelButton.Background = themeCancelButton;
+                }
+                else
+                {
+                    // Change the UI for Dark theme
+                    System.Diagnostics.Debug.WriteLine("Dark");
+                    themeOkayButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.check.png", UriKind.Relative));
+                    themeCancelButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.close.png", UriKind.Relative));
+                    uploadButton.Background = themeOkayButton;
+                    cancelButton.Background = themeCancelButton;
+                }
             }
+           
         }
 
         private void tagButton_Click(object sender, RoutedEventArgs e) {
@@ -135,7 +164,11 @@ namespace River_Watch
                 System.Diagnostics.Debug.WriteLine((double)lat);
                 System.Diagnostics.Debug.WriteLine((double)lon);
 
-                submit.send(picture, tags, (double)lat, (double)lon, nameTextBox.Text, descriptionTextBox.Text);
+                if (submit.send(currentPhotoStream, tags, (double)lat, (double)lon, nameTextBox.Text, descriptionTextBox.Text))
+                {
+                    MessageBox.Show("Sending...");
+                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                }
             }
 
         }
@@ -149,6 +182,21 @@ namespace River_Watch
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        void cameraCaptureTask_Completed(object sender, PhotoResult e)
+        {
+            if (e.TaskResult == TaskResult.OK)
+            {
+                BitmapImage bmp = new BitmapImage();
+                currentPhotoStream = e.ChosenPhoto;
+                bmp.SetSource(currentPhotoStream);
+                previewImage.Source = bmp;
+            }
+            else
+            {
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            }
         }
 
 
