@@ -38,8 +38,8 @@
         <CheckBox Content="Stock" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="4"/>
         <CheckBox Content="Waterway" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="5"/>
         <CheckBox Content="Other" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="6"/>
-        <Button Name="Add" Content="Add" Grid.Column="0" Grid.Row="7" />
-        <Button Name="Cancel" Content="Cancel" Grid.Column="1" Grid.Row="7" />
+        <Button Name="Add" Content="Add"  Click="Add_Click" Grid.Column="0" Grid.Row="7" />
+        <Button Name="Cancel" Content="Cancel" Click="Cancel_Click" Grid.Column="1" Grid.Row="7" />
     </Grid>
 
 </UserControl>

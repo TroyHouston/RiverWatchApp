@@ -41,5 +41,15 @@ namespace River_Watch
             //Returns all the tags that the user selected
             return tags;
         }
+  
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+     
+        }
     }
 }
