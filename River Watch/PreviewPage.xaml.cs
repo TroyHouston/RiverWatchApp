@@ -132,17 +132,25 @@ namespace River_Watch
 
         private void upload_Click(object sender, RoutedEventArgs e)
         {
+            
+
             tagsPopUp.IsOpen = false;
             List<String> tags = tagsUserControl.getTags();
-            //No tags selected
-            if (tags.Count == 0){
-                System.Diagnostics.Debug.WriteLine("No tags selected.");
-                MessageBox.Show("No tags selected.");
+         
+            if (String.IsNullOrEmpty(nameTextBox.Text)){
+                System.Diagnostics.Debug.WriteLine("No name given.");
+                MessageBox.Show("No name given. Please enter a name.");
             }
             else if (String.IsNullOrEmpty(descriptionTextBox.Text))
             {
                 System.Diagnostics.Debug.WriteLine("No description given.");
-                MessageBox.Show("No description given.");
+                MessageBox.Show("No description given. Please enter a description.");
+            }
+            //No tags selected
+            else if (tags.Count == 0)
+            {
+                System.Diagnostics.Debug.WriteLine("No tags selected. ");
+                MessageBox.Show("No tags selected. Please edit tags.");
             }
             else
             {
