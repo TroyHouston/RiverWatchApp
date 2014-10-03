@@ -105,9 +105,13 @@ namespace River_Watch
             List<String> tags = tagsUserControl.getTags();
             //No tags selected
             if (tags.Count == 0){
-                //SHOULD CREATE DIALOG FOR THIS.
-                System.Diagnostics.Debug.WriteLine("No tags selected, ");
+                System.Diagnostics.Debug.WriteLine("No tags selected.");
                 MessageBox.Show("No tags selected.");
+            }
+            else if (String.IsNullOrEmpty(descriptionTextBox.Text))
+            {
+                System.Diagnostics.Debug.WriteLine("No description given.");
+                MessageBox.Show("No description given.");
             }
             else
             {
@@ -122,7 +126,8 @@ namespace River_Watch
                 var lat = PhoneApplicationService.Current.State["latitude"];
                 var lon = PhoneApplicationService.Current.State["longitude"];
 
-                if (lat == null || lon == null) {
+                if (lat == null || lon == null)
+                {
                     MessageBox.Show("GPS coordinates were not found.");
                     return;
                 }
