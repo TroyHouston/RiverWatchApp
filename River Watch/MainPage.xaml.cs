@@ -161,10 +161,6 @@ namespace River_Watch
            NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void navBarHelp(object sender, EventArgs e)
-        {
-
-        }
 
         private void navBarPolicy(object sender, EventArgs e)
         {

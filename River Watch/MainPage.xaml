@@ -15,7 +15,6 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Minimized" IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton x:Name="policy" IconUri="/Assets/navBarIcons/appbar.warning.circle.png" IsEnabled="True" Text="Policy" Click="navBarPolicy"/>
-            <shell:ApplicationBarIconButton x:Name="help" IconUri="/Assets/navBarIcons/appbar.question.png" IsEnabled="True" Text="Help" Click="navBarHelp"/>
             <shell:ApplicationBarIconButton x:Name="settings" IconUri="/Assets/navBarIcons/appbar.settings.png" IsEnabled="True" Text="Settings" Click="navBarSettings"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
