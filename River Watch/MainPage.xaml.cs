@@ -83,11 +83,11 @@ namespace River_Watch
         
         private void Camera_Click(object sender, RoutedEventArgs e)
         {
-            getGeoLocation();
-
             // Clear previous geolocation stored
             PhoneApplicationService.Current.State["latitude"] = null;
             PhoneApplicationService.Current.State["longitude"] = null;
+
+            getGeoLocation();
 
             if (locationOn)
                 NavigationService.Navigate(new Uri("/PreviewPage.xaml?msg=" + Constants.MAIN_PAGE + "&src=" + "camera", UriKind.Relative));
@@ -128,7 +128,7 @@ namespace River_Watch
                 System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Latitude.ToString("0.00"));
                 System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Longitude.ToString("0.00"));
 
-                MessageBox.Show("Geoposition found - lat: " + lat + " long: " + lon, "Location", MessageBoxButton.OKCancel);
+                MessageBox.Show("Geoposition found - lat: " + lat + " long: " + lon, "Location", MessageBoxButton.OK);
                 
             }
             catch (Exception ex)

@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Controls.Primitives;
 using System.ComponentModel;
 using System.Windows.Media;
+using System.IO.IsolatedStorage;
+using Windows.Devices.Geolocation;
 
 namespace River_Watch
 {
@@ -157,7 +159,8 @@ namespace River_Watch
 
                 if (lat == null || lon == null)
                 {
-                    MessageBox.Show("GPS coordinates were not found.");
+                    MessageBox.Show("GPS coordinates were not found. Searching...");
+                    getGeoLocation();
                     return;
                 }
 
@@ -199,6 +202,57 @@ namespace River_Watch
             }
         }
 
+        private static async void getGeoLocation()
+        {
+            double lat, lon;
 
+            if ((bool)IsolatedStorageSettings.ApplicationSettings["LocationConsent"] != true)
+            {
+                // The user has opted out of Location.
+                return;
+            }
+
+            Geolocator geolocator = new Geolocator();
+            geolocator.DesiredAccuracyInMeters = 50;
+
+            try
+            {
+                // Could make this public
+                Geoposition geoposition = await geolocator.GetGeopositionAsync(
+                    maximumAge: TimeSpan.FromMinutes(0),
+                    timeout: TimeSpan.FromSeconds(10)
+                    );
+
+                // Print Geolocation to console 
+                lat = geoposition.Coordinate.Latitude;
+                PhoneApplicationService.Current.State["latitude"] = lat;
+                lon = geoposition.Coordinate.Longitude;
+                PhoneApplicationService.Current.State["longitude"] = lon;
+
+                System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Latitude.ToString("0.00"));
+                System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Longitude.ToString("0.00"));
+
+                MessageBox.Show("Geoposition found - lat: " + lat + " long: " + lon, "Location", MessageBoxButton.OKCancel);
+
+            }
+            catch (Exception ex)
+            {
+                if ((uint)ex.HResult == 0x80004004)
+                {
+                    // the application does not have the right capability or the location master switch is off
+                    System.Diagnostics.Debug.WriteLine("location  is disabled in phone settings.");
+                    MessageBoxResult ask =
+                    MessageBox.Show("Your Location seems to be turned off. Please turn it on to use this application", "Settings", MessageBoxButton.OK);
+                    if (ask == MessageBoxResult.OK)
+                    {
+                        // What happens when you say OK. Preferable not go to another screen. Add a global bool?
+                    }
+                }
+                else
+                {
+
+                }
+            }
+        }
     }
 }
