@@ -136,7 +136,7 @@ namespace River_Watch
                 if ((uint)ex.HResult == 0x80004004)
                 {
                     // the application does not have the right capability or the location master switch is off
-                    System.Diagnostics.Debug.WriteLine("location  is disabled in phone settings.");
+                    System.Diagnostics.Debug.WriteLine("location is disabled in phone settings.");
                     MessageBoxResult ask =
                     MessageBox.Show("Your Location seems to be turned off. Please turn it on to use this application", "Settings", MessageBoxButton.OK);
                     locationOn = false;
