@@ -49,7 +49,7 @@ namespace River_Watch
             BtnRevLoc.IsEnabled = loc;
             
             bool pub = (bool)IsolatedStorageSettings.ApplicationSettings["PublishConsent"];
-            P_Phot_Text.Text = "Pubish Photos";
+            P_Phot_Text.Text = "Publish Photos";
             if (!pub) P_Phot_Text.Text += " - Disabled";
             BtnRevPub.IsEnabled = pub;
         }
