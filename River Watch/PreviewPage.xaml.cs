@@ -18,7 +18,6 @@ namespace River_Watch
 {
     public partial class PreviewPage : PhoneApplicationPage
     {
- 
         private Popup tagsPopUp;
         private TagsPage tagsUserControl;
         private Stream picture;
@@ -90,7 +89,6 @@ namespace River_Watch
 
         }
 
-
         protected override void OnBackKeyPress(CancelEventArgs e)
         {
             //Hide popup when back key pressed
@@ -118,7 +116,6 @@ namespace River_Watch
                     System.Diagnostics.Debug.WriteLine("tag selected: " + tags[i]);
                 }
                 //Submit the photo goes here along with the tags...
-
                 System.Diagnostics.Debug.WriteLine("SENDING IMAGE TO SERVER...");
 
                 var lat = PhoneApplicationService.Current.State["latitude"];

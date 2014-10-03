@@ -30,13 +30,14 @@
         <CheckBox Content="Goat"  Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="0" Grid.Row="3" />
         <CheckBox Content="Horse" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="0" Grid.Row="4"/>
         <CheckBox Content="Litter" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="0" Grid.Row="5"/>
-        <CheckBox Content="Paint" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="0"/>
-        <CheckBox Content="Pollution" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="1"/>
-        <CheckBox Content="River" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="2"/>
-        <CheckBox Content="Runoff" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="3"/>
-        <CheckBox Content="Sheep" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="4"/>
-        <CheckBox Content="Stock" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="5"/>
-        <CheckBox Content="Waterway" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="6"/>
+        <CheckBox Content="Paint" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="0" Grid.Row="6"/>
+        <CheckBox Content="Pollution" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="0"/>
+        <CheckBox Content="River" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="1"/>
+        <CheckBox Content="Runoff" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="2"/>
+        <CheckBox Content="Sheep" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="3"/>
+        <CheckBox Content="Stock" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="4"/>
+        <CheckBox Content="Waterway" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="5"/>
+        <CheckBox Content="Other" Unchecked ="CheckBox_Unchecked" Checked="CheckBox_Checked" Grid.Column="1" Grid.Row="6"/>
         <Button Name="Add" Content="Add" Grid.Column="0" Grid.Row="7" />
         <Button Name="Cancel" Content="Cancel" Grid.Column="1" Grid.Row="7" />
     </Grid>
