@@ -284,6 +284,11 @@ namespace River_Watch
             // Use Find to retrieve the transfer request with the specified ID.
             BackgroundTransferRequest transferToRemove = BackgroundTransferService.Find(transferID);
 
+            if (transferToRemove == null)
+            {
+                return;
+            }
+
             // Try to remove the transfer from the background transfer service.
             try
             {
