@@ -132,9 +132,10 @@ namespace River_Watch
 
         private void upload_Click(object sender, RoutedEventArgs e)
         {
-            
-
-            tagsPopUp.IsOpen = false;
+            //Can't upload whilst adding tags
+            if (tagsPopUp.IsOpen){
+                return;
+            }
             List<String> tags = tagsUserControl.getTags();
          
             if (String.IsNullOrEmpty(nameTextBox.Text)){
