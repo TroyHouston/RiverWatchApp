@@ -43,7 +43,7 @@
             </Button>
             <TextBlock x:Name="descriptionTitle" HorizontalAlignment="Left" Margin="35,268,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="22"/>
             <TextBlock x:Name="nameTitle" HorizontalAlignment="Left" Margin="35,188,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
-            <Button x:Name="tagButton" Content="Add Tags" HorizontalAlignment="Left" Margin="22,385,0,0" VerticalAlignment="Top" Click="tagButton_Click"  Opacity="1"/>
+            <Button x:Name="tagButton" Content="Edit Tags" HorizontalAlignment="Left" Margin="22,385,0,0" VerticalAlignment="Top" Click="tagButton_Click"  Opacity="1"/>
             <TextBox x:Name="nameTextBox" HorizontalAlignment="Left" Height="72" Margin="22,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403"/>
         </Grid>
         <TextBox x:Name="descriptionTextBox" HorizontalAlignment="Left" Height="109" TextWrapping="Wrap" VerticalAlignment="Top" Width="405" Margin="34,290,0,0" Grid.Row="1" TextChanged="TextBox_TextChanged"/>
