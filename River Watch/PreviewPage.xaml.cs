@@ -107,6 +107,7 @@ namespace River_Watch
             if (tags.Count == 0){
                 //SHOULD CREATE DIALOG FOR THIS.
                 System.Diagnostics.Debug.WriteLine("No tags selected, ");
+                MessageBox.Show("No tags selected.");
             }
             else
             {
@@ -129,7 +130,7 @@ namespace River_Watch
                 System.Diagnostics.Debug.WriteLine((double)lat);
                 System.Diagnostics.Debug.WriteLine((double)lon);
 
-                submit.send(picture, tags, (double)lat, (double)lon);
+                submit.send(picture, tags, (double)lat, (double)lon, nameTextBox.Text, descriptionTextBox.Text);
             }
 
         }

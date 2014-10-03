@@ -31,11 +31,11 @@ namespace River_Watch
          *  I would heavily suggest a JSON library at some point.
          *  Especially if we do more with the phone app and get more results.
          */
-        public String createJSONSubmit(List<String> tags, double lat, double lon)
+        public String createJSONSubmit(List<String> tags, double lat, double lon, String name, String description)
         {
             StringBuilder s = new StringBuilder("{");
 
-            s.Append("\"description\":"); s.Append("\"\"");
+            s.Append("\"description\":"); s.Append("\"" + description + "\"");
             s.Append(",");
             s.Append("\"geolocation\":");
             s.Append("{");
@@ -44,8 +44,14 @@ namespace River_Watch
             s.Append("\"long\":"); s.Append(lon);
             s.Append("}");
             s.Append(",");
-            s.Append("\"name\":"); s.Append("\"dsds\"");
-            s.Append(",");
+
+            // Name is an optional field
+            if (name != null && !name.Equals(""))
+            {
+                s.Append("\"name\":"); s.Append("\"" + name + "\"");
+                s.Append(",");
+            }
+
             s.Append("\"tags\":[");
 
             for (int i = 0; i < tags.Count; i++)
@@ -73,11 +79,11 @@ namespace River_Watch
          * The only thing that is missing from the body is the actual file data. 
          * (followed by the final boundary marker)
          */
-        private string generatePostData(string boundary, string fileName, List<String> tags, double lat, double lon)
+        private string generatePostData(string boundary, string fileName, List<String> tags, double lat, double lon, String name, String desc)
         {
             StringBuilder headers = new StringBuilder();
             headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"\r\n\r\n{2}\r\n",
-                boundary, "data", createJSONSubmit(tags, lat, lon));
+                boundary, "data", createJSONSubmit(tags, lat, lon, name, desc));
             headers.AppendFormat("--{0}\r\nContent-Disposition: form-data; name=\"{1}\"; filename=\"{2}\"\r\n\r\n",
                 boundary, "image", fileName);
 
@@ -94,7 +100,7 @@ namespace River_Watch
          * Needs to form a queue of BackgroundTransferRequests. 
          * 
          */
-        public bool send(Stream fileStream, List<String> tags, double lat, double lon)
+        public bool send(Stream fileStream, List<String> tags, double lat, double lon, String name, String desc)
         {
             // Reset the stream position to the beginning
             fileStream.Position = 0;
@@ -130,7 +136,7 @@ namespace River_Watch
                     IsolatedStorageFileStream targetStream = isStore.OpenFile(@"/shared/transfers/" + filename, FileMode.Create);
                     {
                         // Write everything but the image data
-                        byte[] header = Encoding.UTF8.GetBytes(generatePostData(boundary, filename, tags, lat, lon));
+                        byte[] header = Encoding.UTF8.GetBytes(generatePostData(boundary, filename, tags, lat, lon, name, desc));
                         targetStream.Write(header, 0, header.Length);
 
                         // Initialize the buffer for 4KB disk pages.
