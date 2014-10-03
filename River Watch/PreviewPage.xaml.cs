@@ -93,7 +93,7 @@ namespace River_Watch
                     themeOkayButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.check.png", UriKind.Relative));
                     themeCancelButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/light.appbar.close.png", UriKind.Relative));
                     uploadButton.Background = themeOkayButton;
-                    cancelButton.Background = themeCancelButton;
+                    //cancelButton.Background = themeCancelButton;
                 }
                 else
                 {
@@ -102,7 +102,7 @@ namespace River_Watch
                     themeOkayButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.check.png", UriKind.Relative));
                     themeCancelButton.ImageSource = new BitmapImage(new Uri(@"/Assets/Tiles/appbar.close.png", UriKind.Relative));
                     uploadButton.Background = themeOkayButton;
-                    cancelButton.Background = themeCancelButton;
+                    //cancelButton.Background = themeCancelButton;
                 }
             }
            
