@@ -172,11 +172,18 @@ namespace River_Watch
                 System.Diagnostics.Debug.WriteLine((double)lat);
                 System.Diagnostics.Debug.WriteLine((double)lon);
 
-                if (submit.send(currentPhotoStream, tags, (double)lat, (double)lon, nameTextBox.Text, descriptionTextBox.Text))
-                {
-                    MessageBox.Show("Sending...");
-                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                MessageBoxResult result = MessageBox.Show("Are you sure you wish to send?", "Confirm", MessageBoxButton.OKCancel);
+                if (result == MessageBoxResult.OK) {
+                    if (submit.send(currentPhotoStream, tags, (double)lat, (double)lon, nameTextBox.Text, descriptionTextBox.Text))
+                    {
+                        NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred. Please try again.");
+                    }
                 }
+                
             }
 
         }
