@@ -177,6 +177,7 @@ namespace River_Watch
                     if (submit.send(currentPhotoStream, tags, (double)lat, (double)lon, nameTextBox.Text, descriptionTextBox.Text))
                     {
                         NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                        MessageBox.Show("The uploads were successful. If out of range, please check your background transfers.");
                     }
                     else
                     {
