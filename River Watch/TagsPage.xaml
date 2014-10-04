@@ -9,7 +9,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
 
-    <Grid ShowGridLines="False" x:Name="LayoutRoot"  Width="480" Background="{StaticResource PhoneChromeBrush}" RenderTransformOrigin="0.456,0.507" Margin="0,0,0,-93">
+    <Grid  ShowGridLines="False" x:Name="LayoutGrid"  Width="480" Background="{StaticResource PhoneChromeBrush}" RenderTransformOrigin="0.456,0.507" Margin="0,0,0,-93">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto"/>

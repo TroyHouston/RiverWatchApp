@@ -137,12 +137,8 @@ namespace River_Watch
                 return;
             }
             List<String> tags = tagsUserControl.getTags();
-         
-            if (String.IsNullOrEmpty(nameTextBox.Text)){
-                System.Diagnostics.Debug.WriteLine("No name given.");
-                MessageBox.Show("No name given. Please enter a name.");
-            }
-            else if (String.IsNullOrEmpty(descriptionTextBox.Text))
+  
+            if (String.IsNullOrEmpty(descriptionTextBox.Text))
             {
                 System.Diagnostics.Debug.WriteLine("No description given.");
                 MessageBox.Show("No description given. Please enter a description.");

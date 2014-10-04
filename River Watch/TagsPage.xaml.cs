@@ -14,6 +14,8 @@ namespace River_Watch
     {
 
         private List<String> tags = new List<String>();
+        //Previous state
+        private List<String> prevTags = new List<String>();
 
         public TagsPage()
         {
@@ -41,15 +43,28 @@ namespace River_Watch
             //Returns all the tags that the user selected
             return tags;
         }
-  
+
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-
+            prevTags = new List<String>(tags);
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-     
+            tags = new List<String>(prevTags);
+            //Restore the UI checklist to previous state
+            foreach (var child in this.LayoutGrid.Children)
+            {
+                if (child is CheckBox)
+                {
+                    var checkBox = child as CheckBox;
+                    //Restore the previous state - untick all the new tags selected
+                    if (!tags.Contains((checkBox.Content).ToString())){
+                        checkBox.IsChecked = false;
+                    }
+                }
+            }
         }
     }
 }
+
