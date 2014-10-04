@@ -209,6 +209,7 @@ namespace River_Watch
             catch (Exception e)
             {
                 // Handle the exception.
+                System.Diagnostics.Debug.WriteLine(e);
             }
         }
 
