@@ -29,9 +29,16 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Image x:Name="previewImage" HorizontalAlignment="Center" Height="186" Margin="106,0" VerticalAlignment="Top" Width="244" Source="/Assets/Tiles/riverwatchicon.png" RenderTransformOrigin="0.803,0.538"/>
-            <Button x:Name="uploadButton" Margin="172,469,164,18" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="upload_Click" HorizontalAlignment="Center" Width="120">
+            <Button x:Name="uploadButton" Margin="267,457,69,30" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="upload_Click" HorizontalAlignment="Center" Width="120">
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/Tiles/appbar.check.png" />
+                </Button.Background>
+            </Button>
+
+
+            <Button x:Name="cancelButton" Margin="89,457,247,30" VerticalAlignment="Center" Style="{StaticResource roundButton}" Height="120" Click="cancelButton_Click" HorizontalAlignment="Center" Width="120" RenderTransformOrigin="0.56,0.501">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/Tiles/appbar.close.png" />
                 </Button.Background>
             </Button>
             <TextBlock x:Name="descriptionTitle" HorizontalAlignment="Left" Margin="35,268,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" FontSize="22"/>
