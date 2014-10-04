@@ -112,6 +112,8 @@ namespace River_Watch
             // Generate a unique filename for this data
             String filename = String.Format("{0:N}", Guid.NewGuid());
 
+            filename += "-" + (String.IsNullOrEmpty(name) ? "Untitled" : name);
+
             // Save to file system first
             // This saves the entire post body, with content descriptors and boundary markers.
             // This is the only method for BackgroundTransferRequest to utilize without 8.1 APIs. 

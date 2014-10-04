@@ -7,6 +7,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using River_Watch.Resources;
+using System.Windows.Data;
 
 namespace River_Watch
 {

@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:local="clr-namespace:River_Watch"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -28,6 +29,9 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.Resources>
+                <local:StringFormatConverter x:Name="StringFormat"/>
+            </Grid.Resources>
             <TextBlock Text="you have no transfers registered" Name="EmptyTextBlock" Visibility="Collapsed"/>
             <ListBox Name="TransferListBox">
                 <ListBox.ItemTemplate>
@@ -42,7 +46,7 @@
                             </Grid>
                             <Grid Grid.Column="1">
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Tag}"  Foreground="{StaticResource PhoneAccentBrush}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Path=Tag, Converter={StaticResource ResourceKey=StringFormat}}" Foreground="{StaticResource PhoneAccentBrush}" FontWeight="Bold"/>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding TransferStatus}" HorizontalAlignment="Right"/>
                                     </StackPanel>
