@@ -14,28 +14,10 @@ namespace River_Watch
     {
 
         private List<String> tags = new List<String>();
-        //Previous state
-        private List<String> prevTags = new List<String>();
 
         public TagsPage()
         {
             InitializeComponent();
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            //Store all the tags selected by user
-            CheckBox currentCheckBoxItem = sender as CheckBox;
-            String tagName = (currentCheckBoxItem.Content).ToString();
-            tags.Add(tagName);
-        }
-
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            //Remove checked tags
-            CheckBox currentCheckBoxItem = sender as CheckBox;
-            String tagName = (currentCheckBoxItem.Content).ToString();
-            tags.Remove(tagName);
         }
 
         public List<String> getTags()
@@ -46,20 +28,33 @@ namespace River_Watch
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            prevTags = new List<String>(tags);
-        }
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            tags = new List<String>(prevTags);
-            //Restore the UI checklist to previous state
+            tags.Clear();
             foreach (var child in this.LayoutGrid.Children)
             {
                 if (child is CheckBox)
                 {
                     var checkBox = child as CheckBox;
-                    //Restore the previous state - untick all the new tags selected
-                    if (!tags.Contains((checkBox.Content).ToString())){
+                    //Add all the tags selected 
+                    if (checkBox.IsChecked == true)
+                    {
+                        String tagName = (checkBox.Content).ToString();
+                        tags.Add(tagName);
+                    }
+                }
+            }
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            //Restore UI of the tags to the previous state. 
+            foreach (var child in this.LayoutGrid.Children)
+            {
+                if (child is CheckBox)
+                {
+                    var checkBox = child as CheckBox;
+                    //Untick all the new tags selected
+                    if (!tags.Contains((checkBox.Content).ToString()))
+                    {
                         checkBox.IsChecked = false;
                     }
                 }
