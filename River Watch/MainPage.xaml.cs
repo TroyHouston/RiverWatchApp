@@ -79,6 +79,27 @@ namespace River_Watch
 
                 IsolatedStorageSettings.ApplicationSettings.Save();
             }
+
+            if (IsolatedStorageSettings.ApplicationSettings.Contains("PublishConsent"))
+            {
+                // User has opted in or out of publishing
+            }
+            else
+            {
+                MessageBoxResult result =
+                    MessageBox.Show("This app will publish content on your behalf. Is that ok?", "Privacy", MessageBoxButton.OKCancel);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    IsolatedStorageSettings.ApplicationSettings["PublishConsent"] = true;
+                }
+                else
+                {
+                    IsolatedStorageSettings.ApplicationSettings["PublishConsent"] = false;
+                }
+
+                IsolatedStorageSettings.ApplicationSettings.Save();
+            }
         }
         
         private void Camera_Click(object sender, RoutedEventArgs e)
