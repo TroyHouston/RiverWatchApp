@@ -68,7 +68,7 @@ namespace River_Watch
             else
             {
                 MessageBoxResult result =
-                    MessageBox.Show("This app accesses your phone's location & something private data. Is that ok?", "Location & Privacy", MessageBoxButton.OKCancel);
+                    MessageBox.Show("This app accesses your phone's location and shares this private data. Is that ok?", "Location & Privacy", MessageBoxButton.OKCancel);
 
                 if (result == MessageBoxResult.OK) {
                     IsolatedStorageSettings.ApplicationSettings["LocationConsent"] = true;
@@ -122,9 +122,10 @@ namespace River_Watch
         // Gets the current GeoLocation. Prints to console.
         private async void getGeoLocation()
         {
-            if ((bool)IsolatedStorageSettings.ApplicationSettings["LocationConsent"] != true)
+            if ((bool)IsolatedStorageSettings.ApplicationSettings["LocationConsent"] != true || 
+                (bool)IsolatedStorageSettings.ApplicationSettings["PublishConsent"] != true)
             {
-                // The user has opted out of Location.
+                // The user has opted out of Location or Publishing.
                 return;
             }
 
