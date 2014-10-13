@@ -178,10 +178,10 @@ namespace River_Watch
             Uri downloadUri = new Uri("shared/transfers/" + filename, UriKind.RelativeOrAbsolute);
             
             /* !!!!! FOR USE IN PRODUCTION !!!!!! */
-            //BackgroundTransferRequest transferRequest = new BackgroundTransferRequest(new Uri(Constants.SERVER_URL + Constants.SUBMIT_PATH));
+            BackgroundTransferRequest transferRequest = new BackgroundTransferRequest(new Uri(Constants.SERVER_URL + Constants.SUBMIT_PATH));
            
             /* !!!!! FOR USE IN TESTING !!!!! */
-            BackgroundTransferRequest transferRequest = new BackgroundTransferRequest(new Uri("http://192.168.1.91:8000/api/image"));
+            //BackgroundTransferRequest transferRequest = new BackgroundTransferRequest(new Uri("http://192.168.1.91:8000/api/image"));
             
             transferRequest.UploadLocation = (downloadUri);
 
