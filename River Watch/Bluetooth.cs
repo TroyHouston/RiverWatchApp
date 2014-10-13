@@ -42,14 +42,14 @@ namespace River_Watch
                     MessageBox.Show("Could not find any other devices", "Bluetooth", MessageBoxButton.OK);
                     return;
                 }
-                
+
                 StringBuilder list = new StringBuilder();
                 foreach (PeerInformation p in peers)
                 {
                     list.AppendLine(p.HostName + " : " + p.ServiceName);
                 }
 
-                
+
 
                 // Just use the first Peer
                 PeerInformation partner = peers[0];
@@ -83,3 +83,4 @@ namespace River_Watch
         }
     }
 }
+
