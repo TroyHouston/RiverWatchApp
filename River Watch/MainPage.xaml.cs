@@ -67,9 +67,11 @@ namespace River_Watch
             }
             else
             {
+                // Asks for user privacy and location consent 
                 MessageBoxResult result =
                     MessageBox.Show("This app accesses your phone's location and shares this private data. Is that ok?", "Location & Privacy", MessageBoxButton.OKCancel);
 
+                // Set location consent
                 if (result == MessageBoxResult.OK) {
                     IsolatedStorageSettings.ApplicationSettings["LocationConsent"] = true;
                 }
@@ -86,6 +88,7 @@ namespace River_Watch
             }
             else
             {
+                // Ask user for publishing consent 
                 MessageBoxResult result =
                     MessageBox.Show("This app will publish content on your behalf. Is that ok?", "Privacy", MessageBoxButton.OKCancel);
 
@@ -108,6 +111,7 @@ namespace River_Watch
             PhoneApplicationService.Current.State["latitude"] = null;
             PhoneApplicationService.Current.State["longitude"] = null;
 
+            // Get current location.
             getGeoLocation();
 
             if (locationOn)
@@ -119,7 +123,7 @@ namespace River_Watch
             NavigationService.Navigate(new Uri("/Background.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        // Gets the current GeoLocation. Prints to console.
+        // Gets the current GeoLocation. 
         private async void getGeoLocation()
         {
             if ((bool)IsolatedStorageSettings.ApplicationSettings["LocationConsent"] != true || 
@@ -137,20 +141,20 @@ namespace River_Watch
             {
                 // Could make this public
                 Geoposition geoposition = await geolocator.GetGeopositionAsync(
+                    // Always check for a new location
                     maximumAge: TimeSpan.FromMinutes(0),
-                    timeout: TimeSpan.FromSeconds(10)
+                    // Give phone 20seconds to get the location.
+                    timeout: TimeSpan.FromSeconds(15)
                     );
 
-                // Print Geolocation to console 
+                // Save location.
                 lat = geoposition.Coordinate.Latitude;
                 PhoneApplicationService.Current.State["latitude"] = lat;
                 lon = geoposition.Coordinate.Longitude;
                 PhoneApplicationService.Current.State["longitude"] = lon;
 
-                System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Latitude.ToString("0.00"));
-                System.Diagnostics.Debug.WriteLine(geoposition.Coordinate.Longitude.ToString("0.00"));
-
-                MessageBox.Show("Geoposition found - lat: " + lat + " long: " + lon, "Location", MessageBoxButton.OK);
+                // Code that can be used for physical geolocation test.
+                //MessageBox.Show("Geoposition found - lat: " + lat + " long: " + lon, "Location", MessageBoxButton.OK);
                 
             }
             catch (Exception ex)
@@ -164,14 +168,11 @@ namespace River_Watch
                     locationOn = false;
                     if (ask == MessageBoxResult.OK)
                     {                       
-                        // What happens when you say OK. Preferable not go to another screen. Add a global bool?
+                        // What happens when you say OK. 
                     }
                 }
                 else
                 {
-                    // something else happened acquring the location
-                    // Simply retry?
-                    //getGeoLocation();
                 }
             }
         }
@@ -188,25 +189,6 @@ namespace River_Watch
         {
 
         }
-
-        
-
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
-
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
-
 
     }
 }
