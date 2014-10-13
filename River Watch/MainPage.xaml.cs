@@ -180,14 +180,15 @@ namespace River_Watch
         //Nav Bar buttons
         private void navBarSettings(object sender, EventArgs e)
         {
-           //Go to another page 
+           //Go to settings page 
            NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
 
         private void navBarPolicy(object sender, EventArgs e)
         {
-
+            //Go to the privacy policy page
+            NavigationService.Navigate(new Uri("/PrivacyPolicyPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
     }
