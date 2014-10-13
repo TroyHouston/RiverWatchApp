@@ -205,6 +205,17 @@ namespace River_Watch
             try
             {
                 BackgroundTransferService.Remove(transferToRemove);
+                
+                // Delete the request if possible
+                using (IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication())
+                {
+                    string filename = "/shared/transfers/" + transferToRemove.Tag;
+                    if (isoStore.FileExists(filename))
+                    {
+                        isoStore.DeleteFile(filename);
+                    }
+                }
+                
             }
             catch (Exception e)
             {
