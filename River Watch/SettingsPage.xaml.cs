@@ -15,6 +15,7 @@ namespace River_Watch
     {
         public SettingsPage()
         {
+            //If permissions have not been set, give them a false value so buttons can be made
             if (!IsolatedStorageSettings.ApplicationSettings.Contains("LocationConsent"))
             {
                 IsolatedStorageSettings.ApplicationSettings["LocationConsent"] = false;
@@ -41,6 +42,9 @@ namespace River_Watch
             Update_Page();
         }
 
+        /*
+        * Update the text on page to reflect which permission have been granted so can be revoked
+        */
         private void Update_Page()
         {
             bool loc = (bool)IsolatedStorageSettings.ApplicationSettings["LocationConsent"];
