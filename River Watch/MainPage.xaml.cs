@@ -21,7 +21,7 @@ namespace River_Watch
 
         // Stored lat:long coordinates. Updated when camera button is pressed.
         double lat, lon;
-        bool locationOn;
+        bool consentGiven;
 
         // Constructor
         public MainPage()
@@ -60,10 +60,9 @@ namespace River_Watch
             }
 
 
-            if (IsolatedStorageSettings.ApplicationSettings.Contains("LocationConsent"))
-            {
-                // User has opted in or out of Location
-                return;
+            if (IsolatedStorageSettings.ApplicationSettings.Contains("LocationConsent") 
+                && ((bool)IsolatedStorageSettings.ApplicationSettings["LocationConsent"] == true)){
+                
             }
             else
             {
@@ -82,7 +81,8 @@ namespace River_Watch
                 IsolatedStorageSettings.ApplicationSettings.Save();
             }
 
-            if (IsolatedStorageSettings.ApplicationSettings.Contains("PublishConsent"))
+            if (IsolatedStorageSettings.ApplicationSettings.Contains("PublishConsent") 
+                && (bool)IsolatedStorageSettings.ApplicationSettings["PublishConsent"] == true)
             {
                 // User has opted in or out of publishing
             }
@@ -114,7 +114,7 @@ namespace River_Watch
             // Get current location.
             getGeoLocation();
 
-            if (locationOn)
+            if (consentGiven)
                 NavigationService.Navigate(new Uri("/PreviewPage.xaml?msg=" + Constants.MAIN_PAGE + "&src=" + "camera", UriKind.Relative));
         }
 
@@ -135,7 +135,7 @@ namespace River_Watch
 
             Geolocator geolocator = new Geolocator();
             geolocator.DesiredAccuracyInMeters = 50;
-            locationOn = true;
+            consentGiven = true;
 
             try
             {
@@ -165,7 +165,7 @@ namespace River_Watch
                     System.Diagnostics.Debug.WriteLine("location is disabled in phone settings.");
                     MessageBoxResult ask =
                     MessageBox.Show("Your Location seems to be turned off. Please turn it on to use this application", "Settings", MessageBoxButton.OK);
-                    locationOn = false;
+                    consentGiven = false;
                     if (ask == MessageBoxResult.OK)
                     {                       
                         // What happens when you say OK. 
